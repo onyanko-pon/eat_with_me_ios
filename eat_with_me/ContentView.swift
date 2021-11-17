@@ -49,7 +49,7 @@ struct ContentView: View {
           n in MapAnnotation(coordinate: n.coordinate) {
             Circle()
             .fill(Color.green)
-            .frame(width: 44, height: 44)
+            .frame(width: 30, height: 30)
             .onTapGesture(count: 1, perform: {
               print("IT WORKS")
             })
