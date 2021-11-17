@@ -6,12 +6,49 @@
 //
 
 import SwiftUI
+import MapKit
+
+let INIT_LATITUDE_DELTA = 0.01
+let INIT_LONGITUDE_DELTA = 0.01
+
+let UEC_LATITUDE = 35.656068
+let UEC_LONGITUDE = 139.5440491
+
+var init_latitude = UEC_LATITUDE
+var init_longitude = UEC_LONGITUDE
+
+struct MapLocation: Identifiable {
+  let id = UUID()
+  let name: String
+  let latitude: Double
+  let longitude: Double
+  var coordinate: CLLocationCoordinate2D {
+    CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+  }
+}
+
+let MapLocations = [
+  MapLocation(name: "UEC", latitude: UEC_LATITUDE, longitude: UEC_LONGITUDE)
+]
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
+  @State private var region = MKCoordinateRegion(
+    center: CLLocationCoordinate2D(latitude: init_latitude, longitude: init_longitude),
+    span: MKCoordinateSpan(latitudeDelta: INIT_LATITUDE_DELTA, longitudeDelta: INIT_LONGITUDE_DELTA)
+  )
+   var body: some View {
+       Map(
+        coordinateRegion: $region,
+        interactionModes: MapInteractionModes.all,
+        showsUserLocation: true,
+//        userTrackingMode: $tracking,
+        annotationItems: MapLocations,
+        annotationContent: { location in
+          MapPin(coordinate: location.coordinate, tint: .red)
+        }
+       )
+      .edgesIgnoringSafeArea(.all)
+   }
 }
 
 struct ContentView_Previews: PreviewProvider {
