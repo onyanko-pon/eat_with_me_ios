@@ -51,6 +51,7 @@
 		E06637CE2744EC2500CD1D96 /* eat_with_me */ = {
 			isa = PBXGroup;
 			children = (
+				E06637DD2744FC6F00CD1D96 /* View */,
 				E06637CF2744EC2500CD1D96 /* eat_with_meApp.swift */,
 				E06637D12744EC2500CD1D96 /* ContentView.swift */,
 				E06637D32744EC2600CD1D96 /* Assets.xcassets */,
@@ -65,6 +66,13 @@
 				E06637D62744EC2600CD1D96 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E06637DD2744FC6F00CD1D96 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
