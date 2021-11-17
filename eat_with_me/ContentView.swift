@@ -36,6 +36,7 @@ struct ContentView: View {
     center: CLLocationCoordinate2D(latitude: init_latitude, longitude: init_longitude),
     span: MKCoordinateSpan(latitudeDelta: INIT_LATITUDE_DELTA, longitudeDelta: INIT_LONGITUDE_DELTA)
   )
+  @State var isShowHalfModal = true
    var body: some View {
        Map(
         coordinateRegion: $region,
@@ -46,7 +47,7 @@ struct ContentView: View {
 //          MapMarker(coordinate: location.coordinate, tint: .red)
 //        }
         annotationContent: {
-          n in MapAnnotation(coordinate: n.coordinate) {
+          location in MapAnnotation(coordinate: location.coordinate) {
             Circle()
             .fill(Color.green)
             .frame(width: 30, height: 30)
@@ -57,6 +58,18 @@ struct ContentView: View {
         }
        )
       .edgesIgnoringSafeArea(.all)
+      .halfModal(isShow: $isShowHalfModal) {
+        VStack {
+          Text("Shown half modal!")
+            .font(.title.bold())
+            .foregroundColor(.black)
+          Button("Close") {
+            isShowHalfModal.toggle()
+          }
+        }
+      } onEnd: {
+        print("Dismiss half modal")
+      }
    }
 }
 
