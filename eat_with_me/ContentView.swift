@@ -27,7 +27,7 @@ struct MapLocation: Identifiable {
   }
 }
 
-let MapLocations = [
+var MapLocations = [
   MapLocation(name: "UEC", latitude: UEC_LATITUDE, longitude: UEC_LONGITUDE)
 ]
 
