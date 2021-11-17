@@ -12,6 +12,8 @@
 		E06637D42744EC2600CD1D96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06637D32744EC2600CD1D96 /* Assets.xcassets */; };
 		E06637D72744EC2600CD1D96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06637D62744EC2600CD1D96 /* Preview Assets.xcassets */; };
 		E06637DF27451DEB00CD1D96 /* HalfModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637DE27451DEB00CD1D96 /* HalfModalView.swift */; };
+		E06637E227452CF100CD1D96 /* EventModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637E127452CF100CD1D96 /* EventModalView.swift */; };
+		E06637E42745313900CD1D96 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637E32745313900CD1D96 /* Sample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		E06637D32744EC2600CD1D96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E06637D62744EC2600CD1D96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E06637DE27451DEB00CD1D96 /* HalfModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalView.swift; sourceTree = "<group>"; };
+		E06637E127452CF100CD1D96 /* EventModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModalView.swift; sourceTree = "<group>"; };
+		E06637E32745313900CD1D96 /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +77,19 @@
 		E06637DD2744FC6F00CD1D96 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E06637DE27451DEB00CD1D96 /* HalfModalView.swift */,
+				E06637E027452CCD00CD1D96 /* Component */,
+				E06637E127452CF100CD1D96 /* EventModalView.swift */,
+				E06637E32745313900CD1D96 /* Sample.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E06637E027452CCD00CD1D96 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				E06637DE27451DEB00CD1D96 /* HalfModalView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,8 +162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06637E42745313900CD1D96 /* Sample.swift in Sources */,
 				E06637D22744EC2500CD1D96 /* ContentView.swift in Sources */,
 				E06637D02744EC2500CD1D96 /* eat_with_meApp.swift in Sources */,
+				E06637E227452CF100CD1D96 /* EventModalView.swift in Sources */,
 				E06637DF27451DEB00CD1D96 /* HalfModalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

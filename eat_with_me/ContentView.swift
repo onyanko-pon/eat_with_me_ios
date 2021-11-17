@@ -59,13 +59,11 @@ struct ContentView: View {
        )
       .edgesIgnoringSafeArea(.all)
       .halfModal(isShow: $isShowHalfModal) {
-        VStack {
-          Text("Shown half modal!")
-            .font(.title.bold())
-            .foregroundColor(.black)
-          Button("Close") {
+        VStack (spacing: 40) {
+          EventModalView(action: {
             isShowHalfModal.toggle()
-          }
+          })
+          Spacer()
         }
       } onEnd: {
         print("Dismiss half modal")
