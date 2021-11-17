@@ -41,10 +41,19 @@ struct ContentView: View {
         coordinateRegion: $region,
         interactionModes: MapInteractionModes.all,
         showsUserLocation: true,
-//        userTrackingMode: $tracking,
         annotationItems: MapLocations,
-        annotationContent: { location in
-          MapPin(coordinate: location.coordinate, tint: .red)
+//        annotationContent: { location in
+//          MapMarker(coordinate: location.coordinate, tint: .red)
+//        }
+        annotationContent: {
+          n in MapAnnotation(coordinate: n.coordinate) {
+            Circle()
+            .fill(Color.green)
+            .frame(width: 44, height: 44)
+            .onTapGesture(count: 1, perform: {
+              print("IT WORKS")
+            })
+          }
         }
        )
       .edgesIgnoringSafeArea(.all)
