@@ -13,6 +13,7 @@ extension View {
     @ViewBuilder sheet: @escaping () -> Sheet,
     onEnd: @escaping () -> ()
   ) -> some View {
+    print("called")
     return self
       .background(
         HalfModalSheet(

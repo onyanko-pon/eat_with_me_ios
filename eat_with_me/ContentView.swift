@@ -8,67 +8,77 @@
 import SwiftUI
 import MapKit
 
-let INIT_LATITUDE_DELTA = 0.01
-let INIT_LONGITUDE_DELTA = 0.01
-
-let UEC_LATITUDE = 35.656068
-let UEC_LONGITUDE = 139.5440491
-
-var init_latitude = UEC_LATITUDE
-var init_longitude = UEC_LONGITUDE
-
-struct MapLocation: Identifiable {
+struct Event: Identifiable {
   let id = UUID()
-  let name: String
+  let title: String
+  let description: String
+  let date: Date
   let latitude: Double
   let longitude: Double
-  var coordinate: CLLocationCoordinate2D {
-    CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-  }
 }
 
-var MapLocations = [
-  MapLocation(name: "UEC", latitude: UEC_LATITUDE, longitude: UEC_LONGITUDE)
-]
-
 struct ContentView: View {
-  @State private var region = MKCoordinateRegion(
-    center: CLLocationCoordinate2D(latitude: init_latitude, longitude: init_longitude),
-    span: MKCoordinateSpan(latitudeDelta: INIT_LATITUDE_DELTA, longitudeDelta: INIT_LONGITUDE_DELTA)
-  )
-  @State var isShowHalfModal = true
-   var body: some View {
-       Map(
-        coordinateRegion: $region,
-        interactionModes: MapInteractionModes.all,
-        showsUserLocation: true,
-        annotationItems: MapLocations,
-//        annotationContent: { location in
-//          MapMarker(coordinate: location.coordinate, tint: .red)
-//        }
-        annotationContent: {
-          location in MapAnnotation(coordinate: location.coordinate) {
-            Circle()
-            .fill(Color.green)
-            .frame(width: 30, height: 30)
-            .onTapGesture(count: 1, perform: {
-              print("IT WORKS")
-            })
-          }
-        }
-       )
-      .edgesIgnoringSafeArea(.all)
-      .halfModal(isShow: $isShowHalfModal) {
-        VStack (spacing: 40) {
-          EventModalView(action: {
-            isShowHalfModal.toggle()
-          })
-          Spacer()
-        }
-      } onEnd: {
-        print("Dismiss half modal")
+  @ObservedObject var mapData = MapData()
+  @State var isShowHalfModal = false
+  @State var title = ""
+  @State var description = ""
+  @State var date = Date()
+
+  var body: some View {
+
+    ZStack {
+      MapView(region: $mapData.region, MapLocations: $mapData.MapLocations)
+      .onAppear {
+        print("Map　表示された！")
       }
-   }
+      
+      VStack() {
+        Button(action: {
+          print("ボタンが押された")
+          isShowHalfModal.toggle()
+        }){
+          Text("この辺でごはんをセッティングする")
+            .padding()
+            .frame(height: 40)
+            .background(Color.white)
+        }
+//        Spacer().frame(width: 50, height: 100)
+      }
+    }
+    
+    .sheet(isPresented: $isShowHalfModal) {
+      VStack () {
+        EventModalView(
+          title: self.$title,
+          description: self.$description,
+          date: self.$date,
+          action: {
+            isShowHalfModal.toggle()
+            print(self.title, self.description, self.date)
+            
+            print(self.mapData.region.center)
+            let event = Event(
+              title: self.title,
+              description: self.description,
+              date: self.date,
+              latitude: self.mapData.region.center.latitude,
+              longitude: self.mapData.region.center.longitude
+            )
+            let location = MapLocation(newMarker: false, event: event, latitude: event.latitude, longitude: event.longitude)
+            self.mapData.append(obj: location)
+            
+            self.title = ""
+            self.description = ""
+            self.date = Date()
+            
+            
+            
+//          print(self.title)
+        })
+        Spacer()
+      }
+    }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {

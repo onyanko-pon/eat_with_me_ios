@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct EventModalView: View {
-  @State var title = ""
-  @State var description = ""
-  @State var date = Date()
+  @Binding var title: String
+  @Binding var description: String
+  @Binding var date: Date
   
   var action: (() -> Void)?
   
@@ -21,15 +21,10 @@ struct EventModalView: View {
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
       
-//      NavigationView {
       Form {
         Section {
           TextField("タイトルを入力", text: $title)
-  //        TextField("説明を入力", text: $description)
-  //          .frame(maxWidth: .infinity)
-  //          .frame(height: 80)
           TextEditor(text: $description)
-  //          Text("こんにちは！\(title)")
             
           DatePicker(selection: $date,
                       label: {Text("日時")})
@@ -41,17 +36,13 @@ struct EventModalView: View {
         }
           
       }
-//      .padding(0)
-//      .frame(maxWidth: .infinity)
-//        .navigationBarTitle("ごはんの詳細")
-//        .navigationBarTitleDisplayMode(.automatic)
       Spacer()
    }
   }
 }
 
-struct EventModal_Previews: PreviewProvider {
-    static var previews: some View {
-      EventModalView()
-    }
-}
+//struct EventModal_Previews: PreviewProvider {
+//    static var previews: some View {
+//      EventModalView()
+//    }
+//}
