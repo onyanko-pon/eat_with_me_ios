@@ -10,10 +10,12 @@ import SwiftUI
 
 struct UserIcon: View {
   var url: String
+  var size: Double = 90.0
+  
   let color = Color(red: 1.0, green: 84/255, blue: 168/255)
   var body: some View {
     URLImage(url: url)
-      .frame(width: 90.0, height: 90.0, alignment: .leading)
+      .frame(width: size, height: size, alignment: .leading)
       .clipShape(Circle())
       .overlay(Circle().stroke(color, lineWidth: 3))
   }

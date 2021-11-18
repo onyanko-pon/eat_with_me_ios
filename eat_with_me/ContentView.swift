@@ -19,6 +19,7 @@ struct ContentView: View {
   
   @State var isShowHalfModal = false
   @State var showEventDetailModal = false
+  
   @State var detailEvent = Event(
     title: "",
     description: "",
@@ -31,66 +32,85 @@ struct ContentView: View {
 
   var body: some View {
 
-    ZStack {
-      MapView(region: $mapData.region, MapLocations: $mapData.MapLocations, detailEvent: $detailEvent, showEventDetailModal: $showEventDetailModal)
-      .onAppear {
-        print("Map　表示された！")
+    NavigationView {
+      ZStack {
+        MapView(region: $mapData.region, MapLocations: $mapData.MapLocations, detailEvent: $detailEvent, showEventDetailModal: $showEventDetailModal)
+        .onAppear {
+          print("Map　表示された！")
+        }
+        
+        VStack() {
+          
+          HStack () {
+            Spacer()
+            NavigationLink(destination: UserList()) {
+              UserIcon(url: user.imageURL, size: 55.0)
+            }
+            Spacer()
+              .frame(width: 25)
+          }
+          
+          Spacer()
+          CreateEventButton(action: {
+            print("ボタンが押された")
+            isShowHalfModal.toggle()
+          })
+          
+          Spacer()
+            .frame(height: 25)
+        }
+      }
+      .navigationBarHidden(true)
+      .navigationBarTitleDisplayMode(.inline)
+//    .navigationBarTitleDisplayMode(.inline)
+      .sheet(isPresented: $isShowHalfModal) {
+        VStack () {
+          EventModalView(
+            title: $eventObservable.title,
+            description: $eventObservable.description,
+            date: $eventObservable.date,
+            action: {
+              isShowHalfModal.toggle()
+
+              let event = Event(
+                title: eventObservable.title,
+                description: eventObservable.description,
+                date: eventObservable.date,
+                latitude: self.mapData.region.center.latitude,
+                longitude: self.mapData.region.center.longitude,
+                imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg",
+                participants: [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
+              )
+              let location = MapLocation(newMarker: false, event: event, latitude: event.latitude, longitude: event.longitude)
+              self.mapData.append(obj: location)
+              
+              // reset observable
+              self.eventObservable.title = ""
+              self.eventObservable.description = ""
+              self.eventObservable.date = Date()
+              
+          })
+          Spacer()
+        }
       }
       
-      VStack() {
-        Spacer()
-        CreateEventButton(action: {
-          print("ボタンが押された")
-          isShowHalfModal.toggle()
-        })
-        
-        Spacer()
-          .frame(height: 25)
+      .sheet(isPresented: $showEventDetailModal) {
+        VStack () {
+          EventDetailModal(event: $detailEvent)
+          Spacer()
+        }
       }
+      
     }
     
-    .sheet(isPresented: $isShowHalfModal) {
-      VStack () {
-        EventModalView(
-          title: $eventObservable.title,
-          description: $eventObservable.description,
-          date: $eventObservable.date,
-          action: {
-            isShowHalfModal.toggle()
-
-            let event = Event(
-              title: eventObservable.title,
-              description: eventObservable.description,
-              date: eventObservable.date,
-              latitude: self.mapData.region.center.latitude,
-              longitude: self.mapData.region.center.longitude,
-              imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg",
-              participants: [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
-            )
-            let location = MapLocation(newMarker: false, event: event, latitude: event.latitude, longitude: event.longitude)
-            self.mapData.append(obj: location)
-            
-            // reset observable
-            self.eventObservable.title = ""
-            self.eventObservable.description = ""
-            self.eventObservable.date = Date()
-            
-        })
-        Spacer()
-      }
-    }
     
-    .sheet(isPresented: $showEventDetailModal) {
-      VStack () {
-        EventDetailModal(event: $detailEvent)
-        Spacer()
-      }
-    }
+    
   }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+.previewInterfaceOrientation(.portrait)
+    }
+}
