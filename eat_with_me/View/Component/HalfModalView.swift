@@ -13,6 +13,7 @@ extension View {
     @ViewBuilder sheet: @escaping () -> Sheet,
     onEnd: @escaping () -> ()
   ) -> some View {
+    print("called")
     return self
       .background(
         HalfModalSheet(
@@ -55,7 +56,7 @@ struct HalfModalSheet<Sheet: View>: UIViewControllerRepresentable {
       super.viewDidLoad()
 
       if let sheet = self.sheetPresentationController {
-        sheet.detents = [.medium(),]
+        sheet.detents = [.medium(),.large()]
         sheet.prefersGrabberVisible = true
       }
     }
