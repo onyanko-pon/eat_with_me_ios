@@ -13,6 +13,10 @@
 		E06637D72744EC2600CD1D96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06637D62744EC2600CD1D96 /* Preview Assets.xcassets */; };
 		E06637E227452CF100CD1D96 /* EventModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637E127452CF100CD1D96 /* EventModalView.swift */; };
 		E06637E627454FB800CD1D96 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637E527454FB800CD1D96 /* MapView.swift */; };
+		E06637E92746182400CD1D96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637E82746182400CD1D96 /* Event.swift */; };
+		E06637EC274618D700CD1D96 /* EventObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637EB274618D700CD1D96 /* EventObservable.swift */; };
+		E06637EE27461C4A00CD1D96 /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637ED27461C4A00CD1D96 /* URLImage.swift */; };
+		E06637F027461F5300CD1D96 /* EventIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637EF27461F5300CD1D96 /* EventIcon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,10 @@
 		E06637D62744EC2600CD1D96 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E06637E127452CF100CD1D96 /* EventModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModalView.swift; sourceTree = "<group>"; };
 		E06637E527454FB800CD1D96 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E06637E82746182400CD1D96 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		E06637EB274618D700CD1D96 /* EventObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventObservable.swift; sourceTree = "<group>"; };
+		E06637ED27461C4A00CD1D96 /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
+		E06637EF27461F5300CD1D96 /* EventIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,8 @@
 		E06637CE2744EC2500CD1D96 /* eat_with_me */ = {
 			isa = PBXGroup;
 			children = (
+				E06637EA2746184700CD1D96 /* ViewModel */,
+				E06637E72746181100CD1D96 /* Model */,
 				E06637DD2744FC6F00CD1D96 /* View */,
 				E06637CF2744EC2500CD1D96 /* eat_with_meApp.swift */,
 				E06637D12744EC2500CD1D96 /* ContentView.swift */,
@@ -78,6 +88,8 @@
 				E06637E027452CCD00CD1D96 /* Component */,
 				E06637E127452CF100CD1D96 /* EventModalView.swift */,
 				E06637E527454FB800CD1D96 /* MapView.swift */,
+				E06637ED27461C4A00CD1D96 /* URLImage.swift */,
+				E06637EF27461F5300CD1D96 /* EventIcon.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -87,6 +99,22 @@
 			children = (
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		E06637E72746181100CD1D96 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E06637E82746182400CD1D96 /* Event.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E06637EA2746184700CD1D96 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E06637EB274618D700CD1D96 /* EventObservable.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,10 +187,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06637EE27461C4A00CD1D96 /* URLImage.swift in Sources */,
 				E06637E627454FB800CD1D96 /* MapView.swift in Sources */,
 				E06637D22744EC2500CD1D96 /* ContentView.swift in Sources */,
 				E06637D02744EC2500CD1D96 /* eat_with_meApp.swift in Sources */,
 				E06637E227452CF100CD1D96 /* EventModalView.swift in Sources */,
+				E06637F027461F5300CD1D96 /* EventIcon.swift in Sources */,
+				E06637E92746182400CD1D96 /* Event.swift in Sources */,
+				E06637EC274618D700CD1D96 /* EventObservable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

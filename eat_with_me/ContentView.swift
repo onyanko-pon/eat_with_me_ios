@@ -8,21 +8,11 @@
 import SwiftUI
 import MapKit
 
-struct Event: Identifiable {
-  let id = UUID()
-  let title: String
-  let description: String
-  let date: Date
-  let latitude: Double
-  let longitude: Double
-}
-
 struct ContentView: View {
   @ObservedObject var mapData = MapData()
+  @ObservedObject var eventObservable = EventObserable()
+  
   @State var isShowHalfModal = false
-  @State var title = ""
-  @State var description = ""
-  @State var date = Date()
 
   var body: some View {
 
@@ -49,31 +39,28 @@ struct ContentView: View {
     .sheet(isPresented: $isShowHalfModal) {
       VStack () {
         EventModalView(
-          title: self.$title,
-          description: self.$description,
-          date: self.$date,
+          title: $eventObservable.title,
+          description: $eventObservable.description,
+          date: $eventObservable.date,
           action: {
             isShowHalfModal.toggle()
-            print(self.title, self.description, self.date)
-            
-            print(self.mapData.region.center)
+
             let event = Event(
-              title: self.title,
-              description: self.description,
-              date: self.date,
+              title: eventObservable.title,
+              description: eventObservable.description,
+              date: eventObservable.date,
               latitude: self.mapData.region.center.latitude,
-              longitude: self.mapData.region.center.longitude
+              longitude: self.mapData.region.center.longitude,
+              imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg"
             )
             let location = MapLocation(newMarker: false, event: event, latitude: event.latitude, longitude: event.longitude)
             self.mapData.append(obj: location)
             
-            self.title = ""
-            self.description = ""
-            self.date = Date()
+            // reset observable
+            self.eventObservable.title = ""
+            self.eventObservable.description = ""
+            self.eventObservable.date = Date()
             
-            
-            
-//          print(self.title)
         })
         Spacer()
       }
