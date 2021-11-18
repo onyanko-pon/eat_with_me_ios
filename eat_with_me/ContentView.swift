@@ -8,31 +8,44 @@
 import SwiftUI
 import MapKit
 
+var sampleUser = User(
+  username: "username",
+  imageURL: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png"
+)
+
 struct ContentView: View {
   @ObservedObject var mapData = MapData()
   @ObservedObject var eventObservable = EventObserable()
   
   @State var isShowHalfModal = false
+  @State var showEventDetailModal = false
+  @State var detailEvent = Event(
+    title: "",
+    description: "",
+    date: Date(),
+    latitude: 0.0,
+    longitude: 0.0,
+    imageURL: "",
+    participants: []
+  )
 
   var body: some View {
 
     ZStack {
-      MapView(region: $mapData.region, MapLocations: $mapData.MapLocations)
+      MapView(region: $mapData.region, MapLocations: $mapData.MapLocations, detailEvent: $detailEvent, showEventDetailModal: $showEventDetailModal)
       .onAppear {
         print("Map　表示された！")
       }
       
       VStack() {
-        Button(action: {
+        Spacer()
+        CreateEventButton(action: {
           print("ボタンが押された")
           isShowHalfModal.toggle()
-        }){
-          Text("この辺でごはんをセッティングする")
-            .padding()
-            .frame(height: 40)
-            .background(Color.white)
-        }
-//        Spacer().frame(width: 50, height: 100)
+        })
+        
+        Spacer()
+          .frame(height: 25)
       }
     }
     
@@ -51,7 +64,8 @@ struct ContentView: View {
               date: eventObservable.date,
               latitude: self.mapData.region.center.latitude,
               longitude: self.mapData.region.center.longitude,
-              imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg"
+              imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg",
+              participants: [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
             )
             let location = MapLocation(newMarker: false, event: event, latitude: event.latitude, longitude: event.longitude)
             self.mapData.append(obj: location)
@@ -65,11 +79,18 @@ struct ContentView: View {
         Spacer()
       }
     }
+    
+    .sheet(isPresented: $showEventDetailModal) {
+      VStack () {
+        EventDetailModal(event: $detailEvent)
+        Spacer()
+      }
+    }
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

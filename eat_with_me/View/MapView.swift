@@ -44,17 +44,26 @@ struct MapLocation: Identifiable {
 struct MapView: View {
   @Binding var region: MKCoordinateRegion
   @Binding var MapLocations: [MapLocation]
+  @Binding var detailEvent: Event
+  @Binding var showEventDetailModal: Bool
   
   var body: some View {
     return Map(
       coordinateRegion: $region,
-     interactionModes: MapInteractionModes.all,
-     showsUserLocation: true,
+      interactionModes: MapInteractionModes.all,
+      showsUserLocation: true,
       annotationItems: MapLocations,
-     annotationContent: {
-       
+      annotationContent: {
        location in MapAnnotation(coordinate: location.coordinate) {
          EventIcon(url: location.event.imageURL)
+           .gesture(
+              TapGesture()
+                .onEnded({
+                  print("tapped")
+                  detailEvent = location.event
+                  showEventDetailModal.toggle()
+                })
+           )
        }
      }
     )
