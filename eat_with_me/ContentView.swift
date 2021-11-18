@@ -23,16 +23,28 @@ struct ContentView: View {
       }
       
       VStack() {
-        Button(action: {
+        Spacer()
+        CreateEventButton(action: {
           print("ボタンが押された")
           isShowHalfModal.toggle()
-        }){
-          Text("この辺でごはんをセッティングする")
-            .padding()
-            .frame(height: 40)
-            .background(Color.white)
-        }
-//        Spacer().frame(width: 50, height: 100)
+        })
+        
+//        Button(action: {
+//          print("ボタンが押された")
+//          isShowHalfModal.toggle()
+//        }){
+//          Text("この辺でごはんを誘う")
+//            .fontWeight(.medium)
+//            .padding()
+//            .frame(height: 44)
+//            .foregroundColor(.white)
+//            .background(Color.orange)
+//            .cornerRadius(24)
+//        }
+//        .shadow(radius: 3)
+        
+        Spacer()
+          .frame(height: 40)
       }
     }
     

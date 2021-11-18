@@ -48,11 +48,10 @@ struct MapView: View {
   var body: some View {
     return Map(
       coordinateRegion: $region,
-     interactionModes: MapInteractionModes.all,
-     showsUserLocation: true,
+      interactionModes: MapInteractionModes.all,
+      showsUserLocation: true,
       annotationItems: MapLocations,
-     annotationContent: {
-       
+      annotationContent: {
        location in MapAnnotation(coordinate: location.coordinate) {
          EventIcon(url: location.event.imageURL)
        }
