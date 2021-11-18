@@ -15,4 +15,5 @@ struct Event: Identifiable {
   let latitude: Double
   let longitude: Double
   let imageURL: String
+  var participants: [User]
 }
