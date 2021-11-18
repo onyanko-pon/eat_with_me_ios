@@ -44,7 +44,6 @@ struct MapLocation: Identifiable {
 struct MapView: View {
   @Binding var region: MKCoordinateRegion
   @Binding var MapLocations: [MapLocation]
-//  @ObservedObject var mapData = MapData()
   
   var body: some View {
     return Map(
@@ -55,14 +54,7 @@ struct MapView: View {
      annotationContent: {
        
        location in MapAnnotation(coordinate: location.coordinate) {
-         
-         Circle()
-         .fill(Color.green)
-         .frame(width: 30, height: 30)
-         .onTapGesture(count: 1, perform: {
-           print("IT WORKS")
-           print(location.event)
-         })
+         EventIcon(url: location.event.imageURL)
        }
      }
     )
