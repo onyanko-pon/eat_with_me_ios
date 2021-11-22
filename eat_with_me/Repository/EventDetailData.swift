@@ -1,67 +1,54 @@
 //
-//  EventsData.swift
+//  EventDetailData.swift
 //  eat_with_me
 //
-//  Created by 丸山司 on 2021/11/18.
+//  Created by 丸山司 on 2021/11/21.
 //
 
 import Foundation
+import CloudKit
 
 // お菓子データ検索用クラス
-class EventsData: ObservableObject {
+class EventDetailData: ObservableObject {
     // JSONのデータ構造
   struct ResultJson: Codable {
-      // JSONのitem内のデータ構造
     struct UserCodable: Codable {
       let id: Int
       let username: String
       let imageURL: String
     }
-      struct EventCodable: Codable {
-          // お菓子の名称
-        let id: Int
-        let title: String
-        let description: String
-        let start_datetime: Date
-        let end_datetime: Date
-        let organize_user_id: Int
-        let latitude: Double
-        let longitude: Double
-        let organize_user: UserCodable
-      }
-      // 複数要素
-      let events: [EventCodable]?
-  }
-  
-  struct PostJson: Codable {
+      // JSONのitem内のデータ構造
     struct EventCodable: Codable {
+        // お菓子の名称
+      let id: Int
       let title: String
       let description: String
       let start_datetime: Date
       let end_datetime: Date
+      let organize_user_id: Int
       let latitude: Double
       let longitude: Double
-      let organize_user_id: Int
+      let organize_user: UserCodable
+      let join_users: [UserCodable]
     }
-    
-    let event: EventCodable
+    // 複数要素
+    let event: EventCodable?
+  }
+  
+  struct PostBody: Codable {
+    let user_id: Int
   }
 
-  
-  
   // お菓子のリスト（Identifiableプロトコル）
-  @Published var events: [Event] = []
-  var userID: Int
-
+  @Published var event: Event? = nil
+  let userID: Int
   init(userID: Int) {
     self.userID = userID
-    fetchEvents(userID: userID)
   }
-    
     // Web API検索用メソッド 第一引数：keyword 検索したいワード
-  func fetchEvents(userID: Int) {
+  func fetchEvent(eventID: Int) {
     // リクエストURLの組み立て
-    guard let req_url = URL(string: "https://eat-with.herokuapp.com/api/users/\(userID)/events") else {
+    guard let req_url = URL(string: "https://eat-with.herokuapp.com/api/events/\(eventID)") else {
         return
     }
     print(req_url)
@@ -86,28 +73,30 @@ class EventsData: ObservableObject {
         print("パース終わり")
         print(json)
       
-        
-      
-        if let events = json.events {
-          self.events.removeAll()
+        if let event = json.event {
           // 取得しているお菓子の数だけ処理
-          for event in events {
-            let e = Event(
-              id: event.id,
-              title: event.title,
-              description: event.description,
-              startDatetime: event.start_datetime,
-              endDatetime: event.end_datetime,
-              latitude: event.latitude,
-              longitude: event.longitude,
-              imageURL: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png",
-              organizeUser: User(id: event.organize_user.id, username: event.organize_user.username, imageURL: event.organize_user.imageURL),
-              participants: []
-            )
-            // お菓子の配列へ追加
-            self.events.append(e)
-              print(self.events)
+          
+          let u = User(id: event.organize_user.id, username: event.organize_user.username, imageURL: event.organize_user.imageURL)
+          
+          var participants: [User] = []
+          
+          for joinUser in event.join_users {
+            participants.append(User(id: joinUser.id, username: joinUser.username, imageURL: joinUser.imageURL))
           }
+          
+          let e = Event(
+            id: event.id,
+            title: event.title,
+            description: event.description,
+            startDatetime: event.start_datetime,
+            endDatetime: event.end_datetime,
+            latitude: event.latitude,
+            longitude: event.longitude,
+            imageURL: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png",
+            organizeUser: u,
+            participants: participants
+          )
+          self.event = e
         }
       } catch {
             // エラー処理
@@ -118,33 +107,25 @@ class EventsData: ObservableObject {
     task.resume()
   }
   
-  func addEvent(event: Event) {
-    let url = URL(string: "https://eat-with.herokuapp.com/api/events")!
+  func joinEvent(eventID: Int) {
+    let url = URL(string: "https://eat-with.herokuapp.com/api/events/\(eventID)/join")!
     var request = URLRequest(url: url)
-    let postJson = PostJson(event: PostJson.EventCodable(
-      title: event.title,
-      description: event.description,
-      start_datetime: event.startDatetime,
-      end_datetime: event.endDatetime,
-      latitude: event.latitude,
-      longitude: event.longitude,
-      organize_user_id: self.userID
-    ))
+    let postBody = PostBody(user_id: self.userID)
     
     let encoder = JSONEncoder()
     encoder.dateEncodingStrategy = .iso8601
     
     do {
-      let data = try encoder.encode(postJson)
+      let data = try encoder.encode(postBody)
       let jsonstr:String = String(data: data, encoding: .utf8)!
       print(jsonstr)
       request.httpBody = jsonstr.data(using: .utf8)
       request.setValue("application/json", forHTTPHeaderField: "Content-Type")
       request.httpMethod = "POST"      // Postリクエストを送る(このコードがないとGetリクエストになる)
       let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        print("イベント追加")
+        print("イベント参加")
         print(data)
-        self.fetchEvents(userID: self.userID)
+        self.fetchEvent(eventID: eventID)
       }
       task.resume()
     } catch {

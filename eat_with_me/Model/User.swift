@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 struct User: Identifiable {
-  let id = UUID()
+  let uuid = UUID()
+  let id: Int
   let username: String
-//  let name: String
   let imageURL: String
+//  let image: UIImage
 }
 

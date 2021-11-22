@@ -10,7 +10,8 @@ import SwiftUI
 struct EventModalView: View {
   @Binding var title: String
   @Binding var description: String
-  @Binding var date: Date
+  @Binding var startDatetime: Date
+  @Binding var endDatetime: Date
   
   var action: (() -> Void)?
   
@@ -26,7 +27,9 @@ struct EventModalView: View {
           TextField("タイトルを入力", text: $title)
           TextEditor(text: $description)
             
-          DatePicker(selection: $date,
+          DatePicker(selection: $startDatetime,
+                      label: {Text("日時")})
+          DatePicker(selection: $endDatetime,
                       label: {Text("日時")})
         }
         Section {
@@ -34,7 +37,6 @@ struct EventModalView: View {
             Text("作成")
           }
         }
-          
       }
       Spacer()
    }

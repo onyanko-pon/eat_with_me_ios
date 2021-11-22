@@ -23,28 +23,24 @@ class MapData: ObservableObject {
     center: CLLocationCoordinate2D(latitude: init_latitude, longitude: init_longitude),
     span: MKCoordinateSpan(latitudeDelta: INIT_LATITUDE_DELTA, longitudeDelta: INIT_LONGITUDE_DELTA)
   )
-  @Published var MapLocations: [MapLocation] = []
-  
-  func append(obj :MapLocation) {
-    self.MapLocations.append(obj)
-  }
+//  @Published var events: [Event] = []
 }
 
-struct MapLocation: Identifiable {
-  let id = UUID()
-  let newMarker: Bool
-  let event: Event
-  let latitude: Double
-  let longitude: Double
-  var coordinate: CLLocationCoordinate2D {
-    CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-  }
-}
+//struct MapLocation: Identifiable {
+//  let id = UUID()
+//  let newMarker: Bool
+//  let event: Event
+//  let latitude: Double
+//  let longitude: Double
+//  var coordinate: CLLocationCoordinate2D {
+//    CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//  }
+//}
 
 struct MapView: View {
   @Binding var region: MKCoordinateRegion
-  @Binding var MapLocations: [MapLocation]
-  @Binding var detailEvent: Event
+  @Binding var events: [Event]
+  var eventDetailData: EventDetailData
   @Binding var showEventDetailModal: Bool
   
   var body: some View {
@@ -52,15 +48,15 @@ struct MapView: View {
       coordinateRegion: $region,
       interactionModes: MapInteractionModes.all,
       showsUserLocation: true,
-      annotationItems: MapLocations,
+      annotationItems: events,
       annotationContent: {
-       location in MapAnnotation(coordinate: location.coordinate) {
-         EventIcon(url: location.event.imageURL)
+        event in MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: event.latitude, longitude: event.longitude)) {
+         EventIcon(url: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png")
            .gesture(
               TapGesture()
                 .onEnded({
                   print("tapped")
-                  detailEvent = location.event
+                  eventDetailData.fetchEvent(eventID: event.id)
                   showEventDetailModal.toggle()
                 })
            )

@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 
 var sampleUser = User(
+  id: 1,
   username: "username",
   imageURL: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png"
 )
@@ -16,25 +17,19 @@ var sampleUser = User(
 struct ContentView: View {
   @ObservedObject var mapData = MapData()
   @ObservedObject var eventObservable = EventObserable()
+  @ObservedObject var eventsData = EventsData(userID: 2)
   
   @State var isShowHalfModal = false
   @State var showEventDetailModal = false
   
-  @State var detailEvent = Event(
-    title: "",
-    description: "",
-    date: Date(),
-    latitude: 0.0,
-    longitude: 0.0,
-    imageURL: "",
-    participants: []
-  )
+  @ObservedObject var userdata = UserData(userID: 2)
+  @ObservedObject var eventDetailData = EventDetailData(userID: 2)
 
   var body: some View {
 
     NavigationView {
       ZStack {
-        MapView(region: $mapData.region, MapLocations: $mapData.MapLocations, detailEvent: $detailEvent, showEventDetailModal: $showEventDetailModal)
+        MapView(region: $mapData.region, events: $eventsData.events, eventDetailData: eventDetailData, showEventDetailModal: $showEventDetailModal)
         .onAppear {
           print("Map　表示された！")
         }
@@ -43,8 +38,11 @@ struct ContentView: View {
           
           HStack () {
             Spacer()
-            NavigationLink(destination: UserList()) {
-              UserIcon(url: user.imageURL, size: 55.0)
+            NavigationLink(destination: UserListView()) {
+              if userdata.user != nil,
+                 let imageURL = userdata.user?.imageURL {
+                UserIcon(url: imageURL, size: 55.0)
+              }
             }
             Spacer()
               .frame(width: 25)
@@ -62,32 +60,33 @@ struct ContentView: View {
       }
       .navigationBarHidden(true)
       .navigationBarTitleDisplayMode(.inline)
-//    .navigationBarTitleDisplayMode(.inline)
       .sheet(isPresented: $isShowHalfModal) {
         VStack () {
           EventModalView(
             title: $eventObservable.title,
             description: $eventObservable.description,
-            date: $eventObservable.date,
+            startDatetime: $eventObservable.startDatetime,
+            endDatetime: $eventObservable.endDatetime,
             action: {
               isShowHalfModal.toggle()
 
               let event = Event(
+                id: 1,
                 title: eventObservable.title,
                 description: eventObservable.description,
-                date: eventObservable.date,
+                startDatetime: eventObservable.startDatetime,
+                endDatetime: eventObservable.startDatetime,
                 latitude: self.mapData.region.center.latitude,
                 longitude: self.mapData.region.center.longitude,
                 imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg",
-                participants: [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
+                organizeUser: sampleUser,
+                participants: []
               )
-              let location = MapLocation(newMarker: false, event: event, latitude: event.latitude, longitude: event.longitude)
-              self.mapData.append(obj: location)
-              
+              self.eventsData.addEvent(event: event)
+//              self.eventsData.events.append(event)
+
               // reset observable
-              self.eventObservable.title = ""
-              self.eventObservable.description = ""
-              self.eventObservable.date = Date()
+              self.eventObservable.reset()
               
           })
           Spacer()
@@ -96,15 +95,12 @@ struct ContentView: View {
       
       .sheet(isPresented: $showEventDetailModal) {
         VStack () {
-          EventDetailModal(event: $detailEvent)
+          EventDetailModal(eventDetailData: eventDetailData)
           Spacer()
         }
       }
       
     }
-    
-    
-    
   }
 }
 

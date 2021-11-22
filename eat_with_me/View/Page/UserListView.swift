@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-let user = User(username: "username", imageURL: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png")
+let user = User(id: 1, username: "username", imageURL: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png")
 
-struct UserList: View {
+struct UserListView: View {
+  
+  @StateObject var data = FriendsData(userID: 2)
   
   var body: some View {
-//    NavigationView {
       
-      List([user, user, user,user,user,user,user,user,user,user,user,user,user,user]) { user in
+    List(data.friends) { user in
         NavigationLink(destination: UserDetail(user: user)) {
           HStack {
             UserIcon(url: user.imageURL, size: 60.0)
@@ -26,16 +27,13 @@ struct UserList: View {
         }
       }
       .listStyle(InsetListStyle())
-      .navigationBarTitle(Text("ユーザー一覧"))
+      .navigationBarTitle(Text("友達"))
       .padding(.top, 20)
-      
-//    }
-//    }
   }
 }
 
 struct UserList_Previews: PreviewProvider {
   static var previews: some View {
-    UserList()
+    UserListView()
   }
 }

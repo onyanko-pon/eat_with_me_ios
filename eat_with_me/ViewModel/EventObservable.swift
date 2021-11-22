@@ -10,5 +10,13 @@ import Foundation
 class EventObserable: ObservableObject {
   @Published var title = ""
   @Published var description = ""
-  @Published var date = Date()
+  @Published var startDatetime = Date()
+  @Published var endDatetime = Date()
+  
+  func reset() {
+    self.title = ""
+    self.description = ""
+    self.startDatetime = Date()
+    self.endDatetime = Date()
+  }
 }
