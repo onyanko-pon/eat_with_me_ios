@@ -11,14 +11,14 @@
 import SwiftUI
 
 
-struct UserDetail: View {
+struct FriendDetailView: View {
   
   var user: User
   
   var body: some View {
     VStack {
       HStack {
-        UserIcon(url: user.imageURL, size: 90.0)
+        UserIcon(url: self.user.imageURL, size: 90.0)
           .padding(.trailing, 20)
         Text(user.username)
           .font(.title)
@@ -27,14 +27,15 @@ struct UserDetail: View {
       .padding(.top, 16)
       Spacer()
     }
+    .navigationBarTitle(Text(self.user.username))
     .padding(.vertical, 10)
     .padding(.horizontal, 30)
   }
 }
 
-struct UserDetail_Previews: PreviewProvider {
+struct FriendDetail_Previews: PreviewProvider {
   static var previews: some View {
-    UserDetail(user: user)
+    FriendDetailView(user: user)
   }
 }
 

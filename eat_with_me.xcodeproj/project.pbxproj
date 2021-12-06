@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E0295CA92748105C00170B5D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0295CA82748105C00170B5D /* UserService.swift */; };
-		E0295CAC2748142100170B5D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0295CAB2748142100170B5D /* UserData.swift */; };
-		E0295CAE2748181500170B5D /* BaseAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0295CAD2748181500170B5D /* BaseAPIRepository.swift */; };
+		9E58E9407759F00FE6CDAE2D /* Pods_eat_with_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F80CE50F6EA7D9B86D3C198 /* Pods_eat_with_me.framework */; };
+		E04E7080275D06C00070C3F4 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04E707F275D06C00070C3F4 /* TutorialView.swift */; };
+		E04E7082275DDC9E0070C3F4 /* TwitterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04E7081275DDC9E0070C3F4 /* TwitterRepository.swift */; };
+		E064F9DA274E35F100A37464 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E064F9D9274E35F100A37464 /* RootView.swift */; };
 		E06637D02744EC2500CD1D96 /* eat_with_meApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637CF2744EC2500CD1D96 /* eat_with_meApp.swift */; };
 		E06637D22744EC2500CD1D96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637D12744EC2500CD1D96 /* ContentView.swift */; };
 		E06637D42744EC2600CD1D96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06637D32744EC2600CD1D96 /* Assets.xcassets */; };
@@ -26,17 +27,26 @@
 		E06637F82746542700CD1D96 /* UserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637F72746542700CD1D96 /* UserIcon.swift */; };
 		E06637FA27465E0400CD1D96 /* ParticipateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637F927465E0400CD1D96 /* ParticipateButton.swift */; };
 		E06637FC27465FC500CD1D96 /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06637FB27465FC500CD1D96 /* EventsData.swift */; };
-		E066380227466D2500CD1D96 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E066380127466D2500CD1D96 /* UserListView.swift */; };
-		E066380427466D7500CD1D96 /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E066380327466D7500CD1D96 /* UsersData.swift */; };
-		E0663806274679B700CD1D96 /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0663805274679B700CD1D96 /* UserDetail.swift */; };
-		E0731A7927497F4A0055C1B1 /* FriendsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0731A7827497F4A0055C1B1 /* FriendsData.swift */; };
+		E066380227466D2500CD1D96 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E066380127466D2500CD1D96 /* FriendListView.swift */; };
+		E0663806274679B700CD1D96 /* FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0663805274679B700CD1D96 /* FriendDetailView.swift */; };
 		E08C0D93274A664D0014FB8C /* EventDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08C0D92274A664D0014FB8C /* EventDetailData.swift */; };
+		E09BACC4274E4020009A9078 /* TutorialView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACC3274E4020009A9078 /* TutorialView2.swift */; };
+		E09BACC6274E40C9009A9078 /* CreateUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACC5274E40C9009A9078 /* CreateUserData.swift */; };
+		E09BACC8274E4B3E009A9078 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACC7274E4B3E009A9078 /* ImagePicker.swift */; };
+		E09BACCA274E9D7D009A9078 /* APIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACC9274E9D7D009A9078 /* APIRepository.swift */; };
+		E09BACCC274EAB56009A9078 /* UserAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACCB274EAB56009A9078 /* UserAPIRepository.swift */; };
+		E09BACCE274EB322009A9078 /* EventAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACCD274EB322009A9078 /* EventAPIRepository.swift */; };
+		E0ECF6BE275C653200DDD932 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ECF6BD275C653200DDD932 /* AppData.swift */; };
+		E0F1F935274B338C0066801A /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F1F934274B338C0066801A /* UserDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E0295CA82748105C00170B5D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		E0295CAB2748142100170B5D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		E0295CAD2748181500170B5D /* BaseAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPIRepository.swift; sourceTree = "<group>"; };
+		37E7F97F4CA9347BA41ADBB2 /* Pods-eat_with_me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eat_with_me.release.xcconfig"; path = "Target Support Files/Pods-eat_with_me/Pods-eat_with_me.release.xcconfig"; sourceTree = "<group>"; };
+		3F80CE50F6EA7D9B86D3C198 /* Pods_eat_with_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eat_with_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCDCCA99145D73FF5DC04C85 /* Pods-eat_with_me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eat_with_me.debug.xcconfig"; path = "Target Support Files/Pods-eat_with_me/Pods-eat_with_me.debug.xcconfig"; sourceTree = "<group>"; };
+		E04E707F275D06C00070C3F4 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		E04E7081275DDC9E0070C3F4 /* TwitterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterRepository.swift; sourceTree = "<group>"; };
+		E064F9D9274E35F100A37464 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E06637CC2744EC2500CD1D96 /* eat_with_me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eat_with_me.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06637CF2744EC2500CD1D96 /* eat_with_meApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eat_with_meApp.swift; sourceTree = "<group>"; };
 		E06637D12744EC2500CD1D96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,12 +63,19 @@
 		E06637F527462D2900CD1D96 /* EventDetailModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailModal.swift; sourceTree = "<group>"; };
 		E06637F72746542700CD1D96 /* UserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIcon.swift; sourceTree = "<group>"; };
 		E06637F927465E0400CD1D96 /* ParticipateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateButton.swift; sourceTree = "<group>"; };
-		E06637FB27465FC500CD1D96 /* EventsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventsData.swift; path = ../ViewModel/EventsData.swift; sourceTree = "<group>"; };
-		E066380127466D2500CD1D96 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
-		E066380327466D7500CD1D96 /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
-		E0663805274679B700CD1D96 /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
-		E0731A7827497F4A0055C1B1 /* FriendsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsData.swift; sourceTree = "<group>"; };
+		E06637FB27465FC500CD1D96 /* EventsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
+		E066380127466D2500CD1D96 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
+		E0663805274679B700CD1D96 /* FriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailView.swift; sourceTree = "<group>"; };
 		E08C0D92274A664D0014FB8C /* EventDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailData.swift; sourceTree = "<group>"; };
+		E09BACC3274E4020009A9078 /* TutorialView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView2.swift; sourceTree = "<group>"; };
+		E09BACC5274E40C9009A9078 /* CreateUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserData.swift; sourceTree = "<group>"; };
+		E09BACC7274E4B3E009A9078 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		E09BACC9274E9D7D009A9078 /* APIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepository.swift; sourceTree = "<group>"; };
+		E09BACCB274EAB56009A9078 /* UserAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIRepository.swift; sourceTree = "<group>"; };
+		E09BACCD274EB322009A9078 /* EventAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIRepository.swift; sourceTree = "<group>"; };
+		E0ECF6BD275C653200DDD932 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		E0ECF6BF275C8FDF00DDD932 /* eat-with-me-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "eat-with-me-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E0F1F934274B338C0066801A /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,16 +83,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E58E9407759F00FE6CDAE2D /* Pods_eat_with_me.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0DEC3682206DE2A66F6D678 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BCDCCA99145D73FF5DC04C85 /* Pods-eat_with_me.debug.xcconfig */,
+				37E7F97F4CA9347BA41ADBB2 /* Pods-eat_with_me.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CFCD7E42A5FE57DB7ECB5CF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F80CE50F6EA7D9B86D3C198 /* Pods_eat_with_me.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E0295CA72748100200170B5D /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E0295CA82748105C00170B5D /* UserService.swift */,
+				E09BACC7274E4B3E009A9078 /* ImagePicker.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -83,11 +118,10 @@
 		E0295CAA274810DE00170B5D /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				E06637FB27465FC500CD1D96 /* EventsData.swift */,
-				E0295CAB2748142100170B5D /* UserData.swift */,
-				E0295CAD2748181500170B5D /* BaseAPIRepository.swift */,
-				E0731A7827497F4A0055C1B1 /* FriendsData.swift */,
-				E08C0D92274A664D0014FB8C /* EventDetailData.swift */,
+				E09BACC9274E9D7D009A9078 /* APIRepository.swift */,
+				E09BACCB274EAB56009A9078 /* UserAPIRepository.swift */,
+				E04E7081275DDC9E0070C3F4 /* TwitterRepository.swift */,
+				E09BACCD274EB322009A9078 /* EventAPIRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -97,6 +131,8 @@
 			children = (
 				E06637CE2744EC2500CD1D96 /* eat_with_me */,
 				E06637CD2744EC2500CD1D96 /* Products */,
+				C0DEC3682206DE2A66F6D678 /* Pods */,
+				CFCD7E42A5FE57DB7ECB5CF8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,15 +147,17 @@
 		E06637CE2744EC2500CD1D96 /* eat_with_me */ = {
 			isa = PBXGroup;
 			children = (
+				E0ECF6BF275C8FDF00DDD932 /* eat-with-me-Info.plist */,
+				E0ECF6BC275C652500DDD932 /* Environment */,
 				E0295CAA274810DE00170B5D /* Repository */,
 				E0295CA72748100200170B5D /* Service */,
 				E06637EA2746184700CD1D96 /* ViewModel */,
-				E06637E72746181100CD1D96 /* Model */,
+				E06637E72746181100CD1D96 /* Entity */,
 				E06637DD2744FC6F00CD1D96 /* View */,
 				E06637CF2744EC2500CD1D96 /* eat_with_meApp.swift */,
-				E06637D12744EC2500CD1D96 /* ContentView.swift */,
 				E06637D32744EC2600CD1D96 /* Assets.xcassets */,
 				E06637D52744EC2600CD1D96 /* Preview Content */,
+				E064F9D9274E35F100A37464 /* RootView.swift */,
 			);
 			path = eat_with_me;
 			sourceTree = "<group>";
@@ -143,20 +181,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E06637E72746181100CD1D96 /* Model */ = {
+		E06637E72746181100CD1D96 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				E06637E82746182400CD1D96 /* Event.swift */,
 				E06637F12746276C00CD1D96 /* User.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		E06637EA2746184700CD1D96 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E06637FB27465FC500CD1D96 /* EventsData.swift */,
+				E08C0D92274A664D0014FB8C /* EventDetailData.swift */,
+				E09BACC5274E40C9009A9078 /* CreateUserData.swift */,
 				E06637EB274618D700CD1D96 /* EventObservable.swift */,
-				E066380327466D7500CD1D96 /* UsersData.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -201,10 +241,22 @@
 		E06638072746971E00CD1D96 /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				E066380127466D2500CD1D96 /* UserListView.swift */,
-				E0663805274679B700CD1D96 /* UserDetail.swift */,
+				E06637D12744EC2500CD1D96 /* ContentView.swift */,
+				E066380127466D2500CD1D96 /* FriendListView.swift */,
+				E0663805274679B700CD1D96 /* FriendDetailView.swift */,
+				E0F1F934274B338C0066801A /* UserDetailView.swift */,
+				E09BACC3274E4020009A9078 /* TutorialView2.swift */,
+				E04E707F275D06C00070C3F4 /* TutorialView.swift */,
 			);
 			path = Page;
+			sourceTree = "<group>";
+		};
+		E0ECF6BC275C652500DDD932 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				E0ECF6BD275C653200DDD932 /* AppData.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,9 +266,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E06637DA2744EC2600CD1D96 /* Build configuration list for PBXNativeTarget "eat_with_me" */;
 			buildPhases = (
+				FFB3028DA3661425870587A5 /* [CP] Check Pods Manifest.lock */,
 				E06637C82744EC2500CD1D96 /* Sources */,
 				E06637C92744EC2500CD1D96 /* Frameworks */,
 				E06637CA2744EC2500CD1D96 /* Resources */,
+				3E096D39415D9F4F2D5E0448 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -272,6 +326,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3E096D39415D9F4F2D5E0448 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-eat_with_me/Pods-eat_with_me-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-eat_with_me/Pods-eat_with_me-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-eat_with_me/Pods-eat_with_me-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFB3028DA3661425870587A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-eat_with_me-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E06637C82744EC2500CD1D96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -279,26 +375,32 @@
 			files = (
 				E06637EE27461C4A00CD1D96 /* URLImage.swift in Sources */,
 				E06637F82746542700CD1D96 /* UserIcon.swift in Sources */,
-				E0295CA92748105C00170B5D /* UserService.swift in Sources */,
 				E06637FC27465FC500CD1D96 /* EventsData.swift in Sources */,
-				E0663806274679B700CD1D96 /* UserDetail.swift in Sources */,
+				E0663806274679B700CD1D96 /* FriendDetailView.swift in Sources */,
 				E06637E627454FB800CD1D96 /* MapView.swift in Sources */,
+				E04E7082275DDC9E0070C3F4 /* TwitterRepository.swift in Sources */,
+				E0F1F935274B338C0066801A /* UserDetailView.swift in Sources */,
+				E09BACCE274EB322009A9078 /* EventAPIRepository.swift in Sources */,
 				E06637D22744EC2500CD1D96 /* ContentView.swift in Sources */,
+				E064F9DA274E35F100A37464 /* RootView.swift in Sources */,
 				E06637D02744EC2500CD1D96 /* eat_with_meApp.swift in Sources */,
-				E066380427466D7500CD1D96 /* UsersData.swift in Sources */,
+				E09BACCA274E9D7D009A9078 /* APIRepository.swift in Sources */,
 				E06637E227452CF100CD1D96 /* EventModalView.swift in Sources */,
 				E06637F22746276C00CD1D96 /* User.swift in Sources */,
-				E0295CAE2748181500170B5D /* BaseAPIRepository.swift in Sources */,
+				E09BACC4274E4020009A9078 /* TutorialView2.swift in Sources */,
+				E04E7080275D06C00070C3F4 /* TutorialView.swift in Sources */,
 				E06637F4274627D800CD1D96 /* CreateEventButton.swift in Sources */,
-				E0731A7927497F4A0055C1B1 /* FriendsData.swift in Sources */,
+				E09BACCC274EAB56009A9078 /* UserAPIRepository.swift in Sources */,
+				E09BACC8274E4B3E009A9078 /* ImagePicker.swift in Sources */,
 				E06637F627462D2900CD1D96 /* EventDetailModal.swift in Sources */,
+				E09BACC6274E40C9009A9078 /* CreateUserData.swift in Sources */,
 				E08C0D93274A664D0014FB8C /* EventDetailData.swift in Sources */,
 				E06637FA27465E0400CD1D96 /* ParticipateButton.swift in Sources */,
-				E066380227466D2500CD1D96 /* UserListView.swift in Sources */,
+				E066380227466D2500CD1D96 /* FriendListView.swift in Sources */,
 				E06637F027461F5300CD1D96 /* EventIcon.swift in Sources */,
 				E06637E92746182400CD1D96 /* Event.swift in Sources */,
-				E0295CAC2748142100170B5D /* UserData.swift in Sources */,
 				E06637EC274618D700CD1D96 /* EventObservable.swift in Sources */,
+				E0ECF6BE275C653200DDD932 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,14 +525,17 @@
 		};
 		E06637DB2744EC2600CD1D96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCDCCA99145D73FF5DC04C85 /* Pods-eat_with_me.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"eat_with_me/Preview Content\"";
+				DEVELOPMENT_TEAM = 96AZ28BFWY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "eat-with-me-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -451,14 +556,17 @@
 		};
 		E06637DC2744EC2600CD1D96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37E7F97F4CA9347BA41ADBB2 /* Pods-eat_with_me.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"eat_with_me/Preview Content\"";
+				DEVELOPMENT_TEAM = 96AZ28BFWY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "eat-with-me-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

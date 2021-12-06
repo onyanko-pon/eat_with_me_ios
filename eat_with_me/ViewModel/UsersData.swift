@@ -7,11 +7,11 @@
 
 import Foundation
 
-class UsersData: ObservableObject {
-  @Published var users: [User] = []
-  
-  func appendUser(user :User) {
-    self.users.append(user)
-  }
-}
+//class UsersData: ObservableObject {
+//  @Published var users: [User] = []
+//
+//  func appendUser(user :User) {
+//    self.users.append(user)
+//  }
+//}
 

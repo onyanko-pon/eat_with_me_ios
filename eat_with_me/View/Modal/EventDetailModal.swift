@@ -9,12 +9,19 @@ import SwiftUI
 
 func genDateString(date :Date) -> String {
   let df = DateFormatter()
-  df.dateFormat = "MM月dd日 HH時mm分ごろ"
+  df.dateFormat = "MM月dd日"
+  return df.string(from: date)
+}
+
+func genTimeString(date :Date) -> String {
+  let df = DateFormatter()
+  df.dateFormat = "HH時mm分"
   return df.string(from: date)
 }
 
 struct EventDetailModal: View {
 //  @Binding var event: Event?
+  var userID: Int
   @ObservedObject var eventDetailData: EventDetailData
   
   var body: some View {
@@ -30,17 +37,24 @@ struct EventDetailModal: View {
               .padding(.bottom, 1)
           }
           
-          if let startDatetime = eventDetailData.event?.startDatetime {
-            Text(genDateString(date: startDatetime))
+          if let startDatetime = eventDetailData.event?.startDatetime,
+             let endDatetime = eventDetailData.event?.endDatetime{
+            Text("\(genDateString(date: startDatetime)) \(genTimeString(date: startDatetime))〜\(genTimeString(date: endDatetime))")
               .padding(.top, 0.0)
               .foregroundColor(.gray)
               .frame(maxWidth: .infinity, alignment: .leading)
           }
         }
-        if let eventID = eventDetailData.event?.id {
-          PerticipateButton(action: {
-            eventDetailData.joinEvent(eventID: eventID)
-          })
+        if let event = eventDetailData.event {
+          
+          if !UserList(users: event.joinUsers).contain(userID: self.userID) && !(event.organizeUser.id == self.userID) {
+            PerticipateButton(action: {
+              async {
+                await eventDetailData.joinEvent(eventID: event.id)
+                await eventDetailData.fetchEvent(eventID: event.id)
+              }
+            })
+          }
         }
       }
       .padding(.bottom, 15)
@@ -50,7 +64,7 @@ struct EventDetailModal: View {
         if let organizeUser = eventDetailData.event?.organizeUser {
           UserIcon(url: organizeUser.imageURL)
         }
-        if let participants = eventDetailData.event?.participants {
+        if let participants = eventDetailData.event?.joinUsers {
           ForEach(participants) { participant in
             UserIcon(url: participant.imageURL)
           }
@@ -71,9 +85,6 @@ struct EventDetailModal: View {
       
     }
     .padding(.all, 24)
-    .onAppear(perform: {
-      print(eventDetailData.event)
-    })
   }
 }
 
@@ -91,9 +102,8 @@ var previewEvent = Event(
   endDatetime: Date(),
   latitude: 0.0,
   longitude: 0.0,
-  imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg",
   organizeUser: previewUser,
-  participants: [previewUser]
+  joinUsers: [previewUser]
 )
 
 //struct EventDetailModal_Previews: PreviewProvider {

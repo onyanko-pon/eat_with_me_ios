@@ -39,11 +39,15 @@ struct URLImage: View {
         if let imageData = self.imageDownloader.downloadData {
             let img = UIImage(data: imageData)
             return VStack {
-                Image(uiImage: img!).resizable()
+                Image(uiImage: img!)
+                  .resizable()
+                  .aspectRatio(contentMode: .fill)
             }
         } else {
             return VStack {
-                Image(uiImage: UIImage(systemName: "icloud.and.arrow.down")!).resizable()
+                Image(uiImage: UIImage(systemName: "icloud.and.arrow.down")!)
+                  .resizable()
+                  .aspectRatio(contentMode: .fill)
             }
         }
     }

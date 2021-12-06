@@ -16,3 +16,15 @@ struct User: Identifiable {
 //  let image: UIImage
 }
 
+struct UserList {
+  let users: [User]
+  
+  func contain(userID: Int) -> Bool {
+    for user in self.users {
+      if user.id == userID {
+        return true
+      }
+    }
+    return false
+  }
+}

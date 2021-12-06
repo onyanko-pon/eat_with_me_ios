@@ -51,13 +51,16 @@ struct MapView: View {
       annotationItems: events,
       annotationContent: {
         event in MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: event.latitude, longitude: event.longitude)) {
-         EventIcon(url: "https://pics.prcm.jp/f3ff3de4e8133/82924626/png/82924626.png")
+          EventIcon(url: event.organizeUser.imageURL)
            .gesture(
               TapGesture()
                 .onEnded({
                   print("tapped")
-                  eventDetailData.fetchEvent(eventID: event.id)
-                  showEventDetailModal.toggle()
+                  async {
+                    eventDetailData.event = event
+                    await eventDetailData.fetchEvent(eventID: event.id)
+                    showEventDetailModal.toggle()
+                  }
                 })
            )
        }
