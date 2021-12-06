@@ -15,16 +15,32 @@ var sampleUser = User(
 )
 
 struct ContentView: View {
-  @ObservedObject var mapData = MapData()
-  @ObservedObject var eventObservable = EventObserable()
-  @ObservedObject var eventsData = EventsData(userID: 2)
+  
+  init(userID: Int) {
+    self.userID = userID
+    
+    self.mapData = MapData()
+    self.eventObservable = EventObserable()
+    
+    self.eventsData = EventsData(userID: userID)
+    self.eventDetailData = EventDetailData(userID: userID)
+    
+    print(userID)
+  }
+  
+  var userID: Int
+  @EnvironmentObject var appData: AppData
+  
+  @ObservedObject var mapData: MapData
+  @ObservedObject var eventObservable: EventObserable
+  @ObservedObject var eventsData: EventsData
+  
+  @ObservedObject var eventDetailData: EventDetailData
+ //  @ObservedObject var friendsData: FriendsData
   
   @State var isShowHalfModal = false
   @State var showEventDetailModal = false
   
-  @ObservedObject var userdata = UserData(userID: 2)
-  @ObservedObject var eventDetailData = EventDetailData(userID: 2)
-
   var body: some View {
 
     NavigationView {
@@ -38,9 +54,18 @@ struct ContentView: View {
           
           HStack () {
             Spacer()
-            NavigationLink(destination: UserListView()) {
-              if userdata.user != nil,
-                 let imageURL = userdata.user?.imageURL {
+            NavigationLink(destination:
+              FriendListView(userID: self.appData.userID)
+            ) {
+              if appData.friends.count == 0 {
+                UserIcon(url: "https://cdn.icon-icons.com/icons2/2066/PNG/512/user_icon_125113.png", size: 55.0)
+              } else {
+                UserIcon(url: appData.friends[0].imageURL, size: 55.0)
+              }
+            }
+            NavigationLink(destination: UserDetailView(user: $appData.user)) {
+              if appData.user != nil,
+                 let imageURL = appData.user?.imageURL {
                 UserIcon(url: imageURL, size: 55.0)
               }
             }
@@ -69,23 +94,21 @@ struct ContentView: View {
             endDatetime: $eventObservable.endDatetime,
             action: {
               isShowHalfModal.toggle()
-
+              
               let event = Event(
-                id: 1,
+                id: 0,
                 title: eventObservable.title,
                 description: eventObservable.description,
                 startDatetime: eventObservable.startDatetime,
-                endDatetime: eventObservable.startDatetime,
+                endDatetime: eventObservable.endDatetime,
                 latitude: self.mapData.region.center.latitude,
                 longitude: self.mapData.region.center.longitude,
-                imageURL: "https://pics.prcm.jp/e3d9c42a77b3f/84581569/jpeg/84581569.jpeg",
                 organizeUser: sampleUser,
-                participants: []
+                joinUsers: []
               )
-              self.eventsData.addEvent(event: event)
-//              self.eventsData.events.append(event)
-
-              // reset observable
+              async {
+                await self.eventsData.addEvent(event: event)
+              }
               self.eventObservable.reset()
               
           })
@@ -95,7 +118,7 @@ struct ContentView: View {
       
       .sheet(isPresented: $showEventDetailModal) {
         VStack () {
-          EventDetailModal(eventDetailData: eventDetailData)
+          EventDetailModal(userID: self.appData.userID, eventDetailData: eventDetailData)
           Spacer()
         }
       }
@@ -106,7 +129,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-.previewInterfaceOrientation(.portrait)
+        ContentView(userID: 2)
+          .previewInterfaceOrientation(.portrait)
     }
 }

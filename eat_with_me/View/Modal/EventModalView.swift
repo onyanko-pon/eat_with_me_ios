@@ -28,9 +28,9 @@ struct EventModalView: View {
           TextEditor(text: $description)
             
           DatePicker(selection: $startDatetime,
-                      label: {Text("日時")})
+                      label: {Text("開始日時")})
           DatePicker(selection: $endDatetime,
-                      label: {Text("日時")})
+                      label: {Text("終了日時")})
         }
         Section {
           Button(action: action!) {

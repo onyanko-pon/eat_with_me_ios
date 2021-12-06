@@ -16,7 +16,6 @@ struct Event: Identifiable {
   let endDatetime: Date
   let latitude: Double
   let longitude: Double
-  let imageURL: String
   var organizeUser: User
-  var participants: [User]
+  var joinUsers: [User]
 }

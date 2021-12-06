@@ -13,8 +13,8 @@ struct EventIcon: View {
   let color = Color(red: 1.0, green: 84/255, blue: 168/255)
   var body: some View {
     URLImage(url: url)
-      .frame(width: 74.0, height: 74.0, alignment: .leading)
+      .frame(width: 60.0, height: 60.0, alignment: .leading)
       .clipShape(Circle())
-      .overlay(Circle().stroke(color, lineWidth: 4))
+      .overlay(Circle().stroke(color, lineWidth: 2))
   }
 }
