@@ -43,12 +43,12 @@ class CreateUserData: ObservableObject {
     
   }
   
-  func createUser(username: String, uiimage: UIImage) async -> (String, Int){
-    
-    let (user, token) = await self.userRepository.createUser(username: username, imageURL: "")
-    await self.userRepository.uploadUserIcon(userID: user.id, uiImage: uiimage, token: token)
-    
-    return (token, user.id)
-  }
+//  func createUser(username: String, uiimage: UIImage) async -> (String, Int){
+//
+//    let (user, token) = await self.userRepository.createUser(username: username, imageURL: "")
+//    await self.userRepository.uploadUserIcon(userID: user.id, uiImage: uiimage, token: token)
+//
+//    return (token, user.id)
+//  }
 }
 
