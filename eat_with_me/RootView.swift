@@ -22,10 +22,14 @@ struct RootView: View {
           TutorialView()
         }
       } else {
-        Text("スプラッシュ")
+        Image("splash")
+          .resizable()
+          .scaledToFit()
+          .frame(width: 100)
+          
       }
     }.onAppear {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
         withAnimation {
           self.isActive = true
         }

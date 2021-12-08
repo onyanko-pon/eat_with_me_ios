@@ -57,10 +57,10 @@ struct ContentView: View {
             NavigationLink(destination:
               FriendListView(userID: self.appData.userID)
             ) {
-              if appData.friends.count == 0 {
+              if appData.friendList.filterAccepted().count == 0 {
                 UserIcon(url: "https://cdn.icon-icons.com/icons2/2066/PNG/512/user_icon_125113.png", size: 55.0)
               } else {
-                UserIcon(url: appData.friends[0].imageURL, size: 55.0)
+                UserIcon(url: appData.friendList.filterAccepted()[0].user.imageURL, size: 55.0)
               }
             }
             NavigationLink(destination: UserDetailView(user: $appData.user)) {

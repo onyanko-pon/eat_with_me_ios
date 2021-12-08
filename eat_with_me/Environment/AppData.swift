@@ -11,7 +11,9 @@ class AppData: ObservableObject {
   @Published var userID: Int = 0
   @Published var token: String? = nil
   @Published var user: User? = nil
-  @Published var friends: [User] = []
+  @Published var friendList: FriendList = FriendList(friends: [])
+  @Published var requestFriends: [Friend] = []
+  @Published var recommendUsers: [User] = []
   
   let userRepository = UserAPIRepository()
   
@@ -28,9 +30,12 @@ class AppData: ObservableObject {
     if userID != 0 {
       self.setUserID(userID: userID)
       let user = await userRepository.fetchUser(userID: Int64(userID))
-      let friends = await userRepository.fetchFriends(userID: Int64(userID))
+      let (friends, requestFriends) = await userRepository.fetchFriends(userID: Int64(userID))
       self.user = user
-      self.friends = friends
+      self.friendList = FriendList(friends: friends)
+      self.requestFriends = requestFriends
+      
+      self.recommendUsers = await self.userRepository.fetchRecommendFriends(userID: Int64(userID))
     }
     
     if token != nil {
