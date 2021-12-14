@@ -12,7 +12,8 @@ class AppData: ObservableObject {
   @Published var token: String? = nil
   @Published var user: User? = nil
   @Published var friendList: FriendList = FriendList(friends: [])
-  @Published var requestFriends: [Friend] = []
+  @Published var friendApplyings: [FriendApply] = []
+  @Published var friendApplyeds: [FriendApply] = []
   @Published var recommendUsers: [User] = []
   
   let userRepository = UserAPIRepository()
@@ -30,10 +31,11 @@ class AppData: ObservableObject {
     if userID != 0 {
       self.setUserID(userID: userID)
       let user = await userRepository.fetchUser(userID: Int64(userID))
-      let (friends, requestFriends) = await userRepository.fetchFriends(userID: Int64(userID))
+      let (friends, applyings, applyeds) = await userRepository.fetchFriends(userID: Int64(userID))
       self.user = user
       self.friendList = FriendList(friends: friends)
-      self.requestFriends = requestFriends
+      self.friendApplyings = applyings
+      self.friendApplyeds = applyeds
       
       self.recommendUsers = await self.userRepository.fetchRecommendFriends(userID: Int64(userID))
     }
@@ -48,7 +50,6 @@ class AppData: ObservableObject {
     UserDefaults.standard.set(token, forKey: "token")
     self.token = token
   }
-  
   func setUserID(userID: Int) {
     UserDefaults.standard.set(userID, forKey: "userID")
     self.userID = userID

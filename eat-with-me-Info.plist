@@ -8,13 +8,12 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.tsukasamaruyama.eat-with-me-app</string>
+			<string>com.maruyaman.eat-with-me</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>eat-with-me-app-twitter</string>
 			</array>
 		</dict>
-		<dict/>
 	</array>
 </dict>
 </plist>

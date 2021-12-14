@@ -40,6 +40,7 @@
 		E09BACCA274E9D7D009A9078 /* APIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACC9274E9D7D009A9078 /* APIRepository.swift */; };
 		E09BACCC274EAB56009A9078 /* UserAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACCB274EAB56009A9078 /* UserAPIRepository.swift */; };
 		E09BACCE274EB322009A9078 /* EventAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACCD274EB322009A9078 /* EventAPIRepository.swift */; };
+		E0CD02A027686F0200A290D6 /* FriendApply.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD029F27686F0200A290D6 /* FriendApply.swift */; };
 		E0ECF6BE275C653200DDD932 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ECF6BD275C653200DDD932 /* AppData.swift */; };
 		E0F1F935274B338C0066801A /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F1F934274B338C0066801A /* UserDetailView.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		E09BACC9274E9D7D009A9078 /* APIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepository.swift; sourceTree = "<group>"; };
 		E09BACCB274EAB56009A9078 /* UserAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIRepository.swift; sourceTree = "<group>"; };
 		E09BACCD274EB322009A9078 /* EventAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIRepository.swift; sourceTree = "<group>"; };
+		E0CD029F27686F0200A290D6 /* FriendApply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendApply.swift; sourceTree = "<group>"; };
 		E0ECF6BD275C653200DDD932 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		E0ECF6BF275C8FDF00DDD932 /* eat-with-me-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "eat-with-me-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E0F1F934274B338C0066801A /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				E06637E82746182400CD1D96 /* Event.swift */,
 				E06637F12746276C00CD1D96 /* User.swift */,
 				E01BC1F0275E660100195C71 /* Friend.swift */,
+				E0CD029F27686F0200A290D6 /* FriendApply.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				E06637FC27465FC500CD1D96 /* EventsData.swift in Sources */,
 				E01BC1F5275E930700195C71 /* FriendDetailModalView.swift in Sources */,
 				E0663806274679B700CD1D96 /* FriendDetailView.swift in Sources */,
+				E0CD02A027686F0200A290D6 /* FriendApply.swift in Sources */,
 				E06637E627454FB800CD1D96 /* MapView.swift in Sources */,
 				E04E7082275DDC9E0070C3F4 /* TwitterRepository.swift in Sources */,
 				E0F1F935274B338C0066801A /* UserDetailView.swift in Sources */,
@@ -548,10 +552,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"eat_with_me/Preview Content\"";
-				DEVELOPMENT_TEAM = 96AZ28BFWY;
+				DEVELOPMENT_TEAM = 2Q9LCTKS83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "eat-with-me-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "eat with me";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -562,11 +567,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.tsukasa.eat-with-me";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maruyaman.eat-with-me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -579,10 +584,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"eat_with_me/Preview Content\"";
-				DEVELOPMENT_TEAM = 96AZ28BFWY;
+				DEVELOPMENT_TEAM = 2Q9LCTKS83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "eat-with-me-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "eat with me";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -593,11 +599,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.tsukasa.eat-with-me";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maruyaman.eat-with-me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

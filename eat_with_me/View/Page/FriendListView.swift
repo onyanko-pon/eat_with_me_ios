@@ -63,17 +63,54 @@ struct FriendListView: View {
           }
         }
         
-        Section(header: Text("フォローリクエスト \(appData.requestFriends.count)人")) {
-          ForEach(appData.requestFriends) { friend in
-            NavigationLink(destination: FriendDetailView(friend: friend)) {
-              HStack {
-                UserIcon(url: friend.user.imageURL, size: 60.0)
-                  .padding(.trailing, 10)
-                Text(friend.user.username)
-                  .font(.headline)
+        Section(header: Text("フォローリクエスト \(appData.friendApplyeds.count)人")) {
+          ForEach(appData.friendApplyeds) { apply in
+            HStack {
+              UserIcon(url: apply.user.imageURL, size: 60.0)
+                .padding(.trailing, 10)
+              Text(apply.user.username)
+                .font(.headline)
+              
+              Spacer()
+              Button(action: {
+                async {
+                  await userRepository.acceptFriend(userID: appData.userID, friend_user_id: user.id)
+                  print("許可")
+                  await appData.load()
+                }
+              }) {
+                Text("許可")
+                  .font(.caption)
+                  .fontWeight(.medium)
+                  .frame(width: 55, height: 30)
+                  .foregroundColor(Color(.white))
+                  .background(Color(red: (29.0/255.0), green: (161.0/255.0), blue: (242.0/255.0)))
+                  .cornerRadius(8)
               }
-              .padding(.all, 6)
+              .buttonStyle(PlainButtonStyle())
+              .padding(.trailing, 2)
+
+              Button(action: {
+                print("削除")
+//                async {
+//                  await userRepository.applyFriend(userID: appData.userID, friend_user_id: user.id)
+//                  await appData.load()
+//                }
+              }) {
+                Text("削除")
+                  .font(.caption)
+                  .fontWeight(.medium)
+                  .frame(width: 55, height: 30)
+                  .foregroundColor(Color(.black))
+                  // .background(Color(red: (29.0/255.0), green: (161.0/255.0), blue: (242.0/255.0)))
+                  .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                      .stroke(Color.gray, lineWidth: 0.5)
+                  )
+              }
+              .buttonStyle(PlainButtonStyle())
             }
+            .padding(.all, 6)
           }
         }
         
@@ -82,8 +119,27 @@ struct FriendListView: View {
             HStack {
               UserIcon(url: user.imageURL, size: 60.0)
                 .padding(.trailing, 10)
+              
               Text(user.username)
                 .font(.headline)
+              
+              Spacer()
+              Button(action: {
+                async {
+                  await userRepository.applyFriend(userID: appData.userID, friend_user_id: user.id)
+                  await appData.load()
+                }
+              }) {
+                Text("フォロー申請")
+                  .font(.caption)
+                  .fontWeight(.medium)
+                  .frame(width: 85, height: 34)
+                  .foregroundColor(Color(.white))
+                  .background(Color(red: (29.0/255.0), green: (161.0/255.0), blue: (242.0/255.0)))
+                  .cornerRadius(8)
+              }
+              .buttonStyle(PlainButtonStyle())
+                
             }
             .padding(.all, 6)
           }

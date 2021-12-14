@@ -26,7 +26,7 @@ struct FriendDetailView: View {
           .font(.title)
         Spacer()
         
-        if friend.status == "accepted" {
+        if friend.status == "accepted"  {
           Button(action: {
             self.openModal.toggle()
           }) {

@@ -13,13 +13,6 @@ struct eat_with_meApp: App {
     WindowGroup {
       RootView()
         .environmentObject(AppData())
-//        .onOpenURL(perform: { url in
-//          var components = URLComponents(
-//            url: url,
-//            resolvingAgainstBaseURL: false
-//          )!
-//          print(components.queryItems)
-//        })
     }
   }
 }

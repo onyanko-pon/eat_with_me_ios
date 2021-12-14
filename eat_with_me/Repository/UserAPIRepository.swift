@@ -20,6 +20,10 @@ struct UserCodable: Codable {
   }
 }
 
+struct FriendApplyCodable: Codable {
+  let user: UserCodable
+}
+
 struct FriendCodable: Codable {
   let user: UserCodable
   let status: String
@@ -35,7 +39,8 @@ struct FetchUserResult: Codable {
 
 struct FetchFriendsResult: Codable {
   let friends: [FriendCodable]
-  let request_friends: [FriendCodable]
+  let applyings: [FriendApplyCodable]
+  let applyeds: [FriendApplyCodable]
 }
 
 struct FetchRecommendUsersResult: Codable {
@@ -76,8 +81,7 @@ class UserAPIRepository: APIRepository {
     let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(username)/by_username")
     requestEntity.setToken()
     
-    let (data, _) = await self.request(requestEntity: requestEntity)
-    print(data)
+    let (data, res) = await self.request(requestEntity: requestEntity)
     let str: String? = String(data: data!, encoding: .utf8)
     print(str)
     let decoder = JSONDecoder()
@@ -87,7 +91,7 @@ class UserAPIRepository: APIRepository {
     return userCodable.toUser()
   }
   
-  func fetchFriends(userID: Int64) async -> ([Friend], [Friend]) {
+  func fetchFriends(userID: Int64) async -> ([Friend], [FriendApply], [FriendApply]) {
     let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends")
     requestEntity.setToken()
     
@@ -101,13 +105,18 @@ class UserAPIRepository: APIRepository {
       friends.append(f)
     }
     
-    var requestFriends: [Friend] = []
-    for friend in json.request_friends {
-      let f = friend.toFriend()
-      requestFriends.append(f)
+    var applyings: [FriendApply] = []
+    var applyeds: [FriendApply] = []
+    for apply in json.applyings {
+      let u = apply.user
+      applyings.append(FriendApply(user: u.toUser()))
+    }
+    for apply in json.applyeds {
+      let u = apply.user
+      applyeds.append(FriendApply(user: u.toUser()))
     }
     
-    return (friends, requestFriends)
+    return (friends, applyings, applyeds)
   }
   
   func fetchRecommendFriends(userID: Int64) async -> [User] {
@@ -166,7 +175,14 @@ class UserAPIRepository: APIRepository {
     requestEntity.setToken()
     
     let (data, _) = await self.request(requestEntity: requestEntity)
+  }
+  
+  func acceptFriend(userID: Int, friend_user_id: Int) async {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/\(friend_user_id)/accept")
+    requestEntity.setPostRequest()
+    requestEntity.setToken()
     
+    let (data, _) = await self.request(requestEntity: requestEntity)
   }
   
   func blockFriend(userID: Int, friend_user_id: Int) async {
@@ -175,6 +191,5 @@ class UserAPIRepository: APIRepository {
     requestEntity.setToken()
     
     let (data, _) = await self.request(requestEntity: requestEntity)
-    
   }
 }

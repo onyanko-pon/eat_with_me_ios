@@ -6,6 +6,20 @@
 //
 
 import SwiftUI
+import AuthenticationServices
+
+class AuthPresentationContextProver: NSObject, ASWebAuthenticationPresentationContextProviding {
+    private weak var viewController: UIViewController!
+
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+        super.init()
+    }
+
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return viewController?.view.window! ?? ASPresentationAnchor()
+    }
+}
 
 func extractTokenVerifier(queryItems: [URLQueryItem]) -> (String, String) {
   var oauth_token: String = ""
@@ -42,10 +56,31 @@ struct TutorialView: View {
       Button(action: {
         async {
           let (token, secret) = await twitterRepository.fetchRequestToken()
-          self.secret = secret
           if let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(token)") {
-            await UIApplication.shared.open(url)
+            print("start session")
+            let session = ASWebAuthenticationSession(url: url, callbackURLScheme: "eat-with-me-app-twitter")
+            { callbackURL, error in
+              print("callback", callbackURL)
+              print("error", error)
+              let components = URLComponents(
+                url: callbackURL!,
+                resolvingAgainstBaseURL: false
+              )!
+              
+              let (token, verifier) = extractTokenVerifier(queryItems: components.queryItems!)
+              
+              async {
+                print("token:", token, "secret:", secret, "verifier:", verifier)
+                let (user, jwtToken) = await userRepository.createUserWithTwitterAuth(token: token, secret: secret, verifier: verifier)
+                appData.setToken(token: jwtToken)
+                appData.setUserID(userID: user.id)
+              }
+            }
+            let presentationContextProvider = AuthPresentationContextProver(viewController: UIHostingController(rootView: self))
+            session.presentationContextProvider = presentationContextProvider
+            session.start()
           }
+          
         }
       }) {
         
@@ -68,23 +103,6 @@ struct TutorialView: View {
       }
       Spacer()
     }
-    .onOpenURL(perform: { url in
-      print("url", url)
-      let components = URLComponents(
-        url: url,
-        resolvingAgainstBaseURL: false
-      )!
-      let (token, verifier) = extractTokenVerifier(queryItems: components.queryItems!)
-      print("token:", token, "secret:", secret, "verifier:", verifier)
-      
-      async {
-        let (user, jwtToken) = await userRepository.createUserWithTwitterAuth(token: token, secret: secret, verifier: verifier)
-        appData.setToken(token: jwtToken)
-        appData.setUserID(userID: user.id)
-      }
-    })
-//    .sheet(isPresented: self.$isPresented, content: {
-//    })
   }
   
   
