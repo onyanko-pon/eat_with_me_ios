@@ -20,25 +20,36 @@ struct UserCodable: Codable {
   }
 }
 
+struct FriendApplyCodable: Codable {
+  let user: UserCodable
+}
+
+struct FriendCodable: Codable {
+  let user: UserCodable
+  let status: String
+  
+  func toFriend() -> Friend {
+    return Friend(status: self.status, user: self.user.toUser())
+  }
+}
+
 struct FetchUserResult: Codable {
   let user: UserCodable
 }
 
 struct FetchFriendsResult: Codable {
-  let friends: [UserCodable]
+  let friends: [FriendCodable]
+  let applyings: [FriendApplyCodable]
+  let applyeds: [FriendApplyCodable]
+}
+
+struct FetchRecommendUsersResult: Codable {
+  let users: [UserCodable]
 }
 
 struct CreateUserResult: Codable {
   let user: UserCodable
   let token: String
-}
-
-struct CreateUserBody: Codable {
-  struct UserCodable: Codable {
-    let username: String
-    let imageURL: String
-  }
-  let user: UserCodable
 }
 
 struct UploadIcon: Codable {
@@ -66,7 +77,21 @@ class UserAPIRepository: APIRepository {
     return userCodable.toUser()
   }
   
-  func fetchFriends(userID: Int64) async -> [User] {
+  func fetchUserByUsername(username: String) async -> User {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(username)/by_username")
+    requestEntity.setToken()
+    
+    let (data, res) = await self.request(requestEntity: requestEntity)
+    let str: String? = String(data: data!, encoding: .utf8)
+    print(str)
+    let decoder = JSONDecoder()
+    let json = try! decoder.decode(FetchUserResult.self, from: data!)
+    let userCodable = json.user
+    
+    return userCodable.toUser()
+  }
+  
+  func fetchFriends(userID: Int64) async -> ([Friend], [FriendApply], [FriendApply]) {
     let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends")
     requestEntity.setToken()
     
@@ -74,38 +99,41 @@ class UserAPIRepository: APIRepository {
     let decoder = JSONDecoder()
     let json = try! decoder.decode(FetchFriendsResult.self, from: data!)
     
-    var users: [User] = []
-    
-    for u in json.friends {
-      let user = u.toUser()
-      users.append(user)
+    var friends: [Friend] = []
+    for friend in json.friends {
+      let f = friend.toFriend()
+      friends.append(f)
     }
     
-    return users
+    var applyings: [FriendApply] = []
+    var applyeds: [FriendApply] = []
+    for apply in json.applyings {
+      let u = apply.user
+      applyings.append(FriendApply(user: u.toUser()))
+    }
+    for apply in json.applyeds {
+      let u = apply.user
+      applyeds.append(FriendApply(user: u.toUser()))
+    }
+    
+    return (friends, applyings, applyeds)
   }
   
-  func createUser(username: String, imageURL: String) async -> (User, String) {
-    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users")
-    requestEntity.setPostRequest()
-    
-    let requestBody = CreateUserBody(user: CreateUserBody.UserCodable(username: username, imageURL: imageURL))
-    let encoder = JSONEncoder()
-    encoder.dateEncodingStrategy = .iso8601
-    let jsonData = try! encoder.encode(requestBody)
-    let jsonstr: String = String(data: jsonData, encoding: .utf8)!
-    requestEntity.setJsonBody(json: jsonstr)
+  func fetchRecommendFriends(userID: Int64) async -> [User] {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/recommended")
+    requestEntity.setToken()
     
     let (data, _) = await self.request(requestEntity: requestEntity)
     let decoder = JSONDecoder()
-    do {
-      let json = try decoder.decode(CreateUserResult.self, from: data!)
-      let user = User(id: json.user.id, username: json.user.username, imageURL: json.user.imageURL)
+    let json = try! decoder.decode(FetchRecommendUsersResult.self, from: data!)
     
-      return (user, json.token)
-    } catch {
-      print(error)
-      fatalError()
+    var users: [User] = []
+    for user in json.users {
+      let u = user.toUser()
+      users.append(u)
     }
+    
+    return users
   }
   
   func uploadUserIcon(userID: Int, uiImage: UIImage, token: String) async {
@@ -129,10 +157,6 @@ class UserAPIRepository: APIRepository {
     requestEntity.setJsonBody(json: jsonstr)
     
     let (data, _) = await self.request(requestEntity: requestEntity)
-    print("res data")
-    print(String(data: data!, encoding: .utf8))
-    let items = try! JSONSerialization.jsonObject(with: data!)
-    print(items)
     let decoder = JSONDecoder()
     do {
       let json = try decoder.decode(CreateUserResult.self, from: data!)
@@ -143,5 +167,29 @@ class UserAPIRepository: APIRepository {
       print(error)
       fatalError()
     }
+  }
+  
+  func applyFriend(userID: Int, friend_user_id: Int) async {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/\(friend_user_id)/apply")
+    requestEntity.setPostRequest()
+    requestEntity.setToken()
+    
+    let (data, _) = await self.request(requestEntity: requestEntity)
+  }
+  
+  func acceptFriend(userID: Int, friend_user_id: Int) async {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/\(friend_user_id)/accept")
+    requestEntity.setPostRequest()
+    requestEntity.setToken()
+    
+    let (data, _) = await self.request(requestEntity: requestEntity)
+  }
+  
+  func blockFriend(userID: Int, friend_user_id: Int) async {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/\(friend_user_id)/block")
+    requestEntity.setPostRequest()
+    requestEntity.setToken()
+    
+    let (data, _) = await self.request(requestEntity: requestEntity)
   }
 }
