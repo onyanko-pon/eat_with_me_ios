@@ -9,7 +9,7 @@ import Foundation
 
 struct Friend: Identifiable {
   let id = UUID()
-  let status: String
+  let blinding: Bool
   let user: User
 }
 
@@ -18,25 +18,5 @@ struct FriendList {
   
   func len() -> Int {
     return self.friends.count
-  }
-  
-  func filterAccepted() -> [Friend] {
-    var resFriends: [Friend] = []
-    for friend in self.friends {
-      if friend.status == "accepted" {
-        resFriends.append(friend)
-      }
-    }
-    return resFriends
-  }
-  
-  func filterApplying() -> [Friend] {
-    var resFriends: [Friend] = []
-    for friend in self.friends {
-      if friend.status == "applying" {
-        resFriends.append(friend)
-      }
-    }
-    return resFriends
   }
 }

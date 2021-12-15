@@ -14,6 +14,7 @@ struct ApplyFriendModalView: View {
   @State var username = ""
   @State var user: User? = nil
   @Binding var openSheet: Bool
+  @State var userNotFound = false
   
   var applyUserData = ApplyFriendData()
   
@@ -31,17 +32,22 @@ struct ApplyFriendModalView: View {
         TextField("友達のユーザーIDを入力", text: $username)
           .padding(.bottom, 40)
         
+        if self.userNotFound == true {
+          Text("友達が見つかりませんでした")
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundColor(Color.red)
+            .padding(.bottom, 6)
+        }
         
         Button(action: {
           async {
             let user = await applyUserData.searchFriend(username: self.username)
-          
-//            self.user = User(
-//              id: 1,
-//              username: "hoge",
-//              imageURL: "https://pbs.twimg.com/profile_images/1399403028755619841/JqRHZEkb_normal.jpg"
-//            )
-            self.user = user
+            if user == nil {
+              self.userNotFound = true
+            } else {
+              self.user = user
+              self.userNotFound = false
+            }
           }
         }) {
           Text("友達を探す")
@@ -79,6 +85,9 @@ struct ApplyFriendModalView: View {
       }
       Spacer()
     }
+    .onAppear(perform: {
+      print(self.user)
+    })
     .padding(.all, 24)
   }
 }

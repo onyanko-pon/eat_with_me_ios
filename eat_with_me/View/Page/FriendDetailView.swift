@@ -26,10 +26,14 @@ struct FriendDetailView: View {
           .font(.title)
         Spacer()
         
-        if friend.status == "accepted"  {
-          Button(action: {
-            self.openModal.toggle()
-          }) {
+        
+        Button(action: {
+          self.openModal.toggle()
+        }) {
+          if friend.blinding {
+            Text("ブラインド中")
+              .foregroundColor(Color.gray)
+          } else {
             Image("edit")
           }
         }

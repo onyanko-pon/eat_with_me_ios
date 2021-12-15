@@ -8,6 +8,17 @@
 import SwiftUI
 import MapKit
 
+func extractUserID(queryItems: [URLQueryItem]) -> String? {
+  var userid: String = ""
+  for queryItem in queryItems {
+    if queryItem.name == "userid" {
+      return queryItem.value!
+    }
+  }
+  
+  return nil
+}
+
 var sampleUser = User(
   id: 1,
   username: "username",
@@ -29,6 +40,7 @@ struct ContentView: View {
   }
   
   var userID: Int
+  var userRepository = UserAPIRepository()
   @EnvironmentObject var appData: AppData
   
   @ObservedObject var mapData: MapData
@@ -36,10 +48,11 @@ struct ContentView: View {
   @ObservedObject var eventsData: EventsData
   
   @ObservedObject var eventDetailData: EventDetailData
- //  @ObservedObject var friendsData: FriendsData
   
   @State var isShowHalfModal = false
   @State var showEventDetailModal = false
+  @State var showApplyFriendModal = false
+  @State var applyUser : User? = nil
   
   var body: some View {
 
@@ -57,10 +70,10 @@ struct ContentView: View {
             NavigationLink(destination:
               FriendListView(userID: self.appData.userID)
             ) {
-              if appData.friendList.filterAccepted().count == 0 {
+              if appData.friendList.len() == 0 {
                 UserIcon(url: "https://cdn.icon-icons.com/icons2/2066/PNG/512/user_icon_125113.png", size: 55.0)
               } else {
-                UserIcon(url: appData.friendList.filterAccepted()[0].user.imageURL, size: 55.0)
+                UserIcon(url: appData.friendList.friends[0].user.imageURL, size: 55.0)
               }
             }
             NavigationLink(destination: UserDetailView(user: $appData.user)) {
@@ -83,6 +96,21 @@ struct ContentView: View {
             .frame(height: 25)
         }
       }
+      .onOpenURL(perform: { url in
+        print(url)
+        let components = URLComponents(
+          url: url,
+          resolvingAgainstBaseURL: false
+        )!
+        
+        let username = extractUserID(queryItems: components.queryItems!)
+        
+        async {
+          self.applyUser = await userRepository.fetchUserByUsername(username: username!)
+          print(self.applyUser)
+          self.showApplyFriendModal = true
+        }
+      })
       .navigationBarHidden(true)
       .navigationBarTitleDisplayMode(.inline)
       .sheet(isPresented: $isShowHalfModal) {
@@ -122,7 +150,9 @@ struct ContentView: View {
           Spacer()
         }
       }
-      
+      .sheet(isPresented: $showApplyFriendModal) {
+        ApplyFriendModalView(userID: self.appData.userID, user: self.applyUser, openSheet: $showApplyFriendModal)
+      }
     }
   }
 }

@@ -8,19 +8,6 @@
 import SwiftUI
 import AuthenticationServices
 
-class AuthPresentationContextProver: NSObject, ASWebAuthenticationPresentationContextProviding {
-    private weak var viewController: UIViewController!
-
-    init(viewController: UIViewController) {
-        self.viewController = viewController
-        super.init()
-    }
-
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return viewController?.view.window! ?? ASPresentationAnchor()
-    }
-}
-
 func extractTokenVerifier(queryItems: [URLQueryItem]) -> (String, String) {
   var oauth_token: String = ""
   var oauth_verifier :String = ""
@@ -34,6 +21,19 @@ func extractTokenVerifier(queryItems: [URLQueryItem]) -> (String, String) {
   }
   
   return (oauth_token, oauth_verifier)
+}
+
+class AuthPresentationContextProver: NSObject, ASWebAuthenticationPresentationContextProviding {
+    private weak var viewController: UIViewController!
+
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+        super.init()
+    }
+
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return viewController?.view.window! ?? ASPresentationAnchor()
+    }
 }
 
 struct TutorialView: View {

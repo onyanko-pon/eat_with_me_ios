@@ -11,7 +11,7 @@ class ApplyFriendData {
   var userRepository = UserAPIRepository()
   
   
-  func searchFriend(username: String) async -> User {
+  func searchFriend(username: String) async -> User? {
     let user = await self.userRepository.fetchUserByUsername(username: username)
     return user
   }

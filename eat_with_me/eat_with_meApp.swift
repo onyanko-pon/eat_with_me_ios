@@ -12,6 +12,9 @@ struct eat_with_meApp: App {
   var body: some Scene {
     WindowGroup {
       RootView()
+        .onOpenURL(perform: { url in
+          print(url)
+        })
         .environmentObject(AppData())
     }
   }

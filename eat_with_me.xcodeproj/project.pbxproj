@@ -40,6 +40,7 @@
 		E09BACCA274E9D7D009A9078 /* APIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACC9274E9D7D009A9078 /* APIRepository.swift */; };
 		E09BACCC274EAB56009A9078 /* UserAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACCB274EAB56009A9078 /* UserAPIRepository.swift */; };
 		E09BACCE274EB322009A9078 /* EventAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACCD274EB322009A9078 /* EventAPIRepository.swift */; };
+		E0A822AD2769D29B00CD44ED /* FriendShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A822AC2769D29B00CD44ED /* FriendShareSheet.swift */; };
 		E0CD02A027686F0200A290D6 /* FriendApply.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD029F27686F0200A290D6 /* FriendApply.swift */; };
 		E0ECF6BE275C653200DDD932 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ECF6BD275C653200DDD932 /* AppData.swift */; };
 		E0F1F935274B338C0066801A /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F1F934274B338C0066801A /* UserDetailView.swift */; };
@@ -82,6 +83,7 @@
 		E09BACC9274E9D7D009A9078 /* APIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepository.swift; sourceTree = "<group>"; };
 		E09BACCB274EAB56009A9078 /* UserAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIRepository.swift; sourceTree = "<group>"; };
 		E09BACCD274EB322009A9078 /* EventAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIRepository.swift; sourceTree = "<group>"; };
+		E0A822AC2769D29B00CD44ED /* FriendShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendShareSheet.swift; sourceTree = "<group>"; };
 		E0CD029F27686F0200A290D6 /* FriendApply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendApply.swift; sourceTree = "<group>"; };
 		E0ECF6BD275C653200DDD932 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		E0ECF6BF275C8FDF00DDD932 /* eat-with-me-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "eat-with-me-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -222,6 +224,7 @@
 				E06637E127452CF100CD1D96 /* EventModalView.swift */,
 				E01BC1EC275E347800195C71 /* ApplyFriendModalView.swift */,
 				E01BC1F4275E930700195C71 /* FriendDetailModalView.swift */,
+				E0A822AC2769D29B00CD44ED /* FriendShareSheet.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				E06637F627462D2900CD1D96 /* EventDetailModal.swift in Sources */,
 				E09BACC6274E40C9009A9078 /* CreateUserData.swift in Sources */,
 				E08C0D93274A664D0014FB8C /* EventDetailData.swift in Sources */,
+				E0A822AD2769D29B00CD44ED /* FriendShareSheet.swift in Sources */,
 				E06637FA27465E0400CD1D96 /* ParticipateButton.swift in Sources */,
 				E066380227466D2500CD1D96 /* FriendListView.swift in Sources */,
 				E01BC1F1275E660100195C71 /* Friend.swift in Sources */,
