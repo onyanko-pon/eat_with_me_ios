@@ -10,8 +10,8 @@ import Foundation
 class FriendData {
   private var userRepository = UserAPIRepository()
   
-  func block(userID: Int, friendUserID: Int) async {
-    await self.userRepository.blockFriend(userID: userID, friend_user_id: friendUserID)
+  func blind(userID: Int, friendUserID: Int) async {
+    await self.userRepository.blindFriend(userID: userID, friend_user_id: friendUserID)
   }
   
 }

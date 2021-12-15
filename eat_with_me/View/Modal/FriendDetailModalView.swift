@@ -25,16 +25,21 @@ struct FriendDetailModalView: View {
         .padding(.leading, 16)
       
       List {
-        Button(action: {
-          async {
-            await self.friendData.block(userID: appData.userID, friendUserID: friend.user.id)
-            self.openModal.toggle()
-            await appData.load()
-            // TODO ブロックしたとポップアップを出す
+        
+        if friend.blinding {
+          // TODO ブラインドを解除
+        } else {
+          Button(action: {
+            async {
+              await self.friendData.blind(userID: appData.userID, friendUserID: friend.user.id)
+              self.openModal.toggle()
+              await appData.load()
+              // TODO ブロックしたとポップアップを出す
+            }
+          }) {
+            Text("ブラインドする")
+              .foregroundColor(Color.red)
           }
-        }) {
-          Text("ブロックする")
-            .foregroundColor(Color.red)
         }
       }
       .listStyle(InsetListStyle())

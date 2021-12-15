@@ -35,6 +35,9 @@ struct RootView: View {
         }
       }
     }
+    .onOpenURL(perform: { url in
+      print(url)
+    })
   }
 }
 
