@@ -63,6 +63,10 @@ struct CreateUserWithTwitterBody: Codable {
   let oauth_verifier: String
 }
 
+struct CreateUserWithAppleBody: Codable {
+  let user_identifier: String
+}
+
 class UserAPIRepository: APIRepository {
   
   func fetchUser(userID: Int64) async -> User? {
@@ -180,6 +184,52 @@ class UserAPIRepository: APIRepository {
     }
   }
   
+  func createUserWithAppleAuth(user_identifier: String) async -> (User, String) {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/apple_verify")
+    requestEntity.setPostRequest()
+    
+    let requestBody = CreateUserWithAppleBody(user_identifier: user_identifier)
+    let encoder = JSONEncoder()
+    let jsonData = try! encoder.encode(requestBody)
+    let jsonstr: String = String(data: jsonData, encoding: .utf8)!
+    requestEntity.setJsonBody(json: jsonstr)
+    
+    let (data, _) = await self.request(requestEntity: requestEntity)
+    let decoder = JSONDecoder()
+    do {
+      let json = try decoder.decode(CreateUserResult.self, from: data!)
+      let user = User(id: json.user.id, username: json.user.username, imageURL: json.user.imageURL)
+    
+      return (user, json.token)
+    } catch {
+      print(error)
+      fatalError()
+    }
+  }
+  
+  func connectTwitter(userid: Int, token: String, secret: String, verifier: String) async -> (User, String) {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userid)/twitter_connect")
+    requestEntity.setPostRequest()
+    
+    let requestBody = CreateUserWithTwitterBody(oauth_token: token, oauth_secret: secret, oauth_verifier: verifier)
+    let encoder = JSONEncoder()
+    let jsonData = try! encoder.encode(requestBody)
+    let jsonstr: String = String(data: jsonData, encoding: .utf8)!
+    requestEntity.setJsonBody(json: jsonstr)
+    
+    let (data, _) = await self.request(requestEntity: requestEntity)
+    let decoder = JSONDecoder()
+    do {
+      let json = try decoder.decode(CreateUserResult.self, from: data!)
+      let user = User(id: json.user.id, username: json.user.username, imageURL: json.user.imageURL)
+    
+      return (user, json.token)
+    } catch {
+      print(error)
+      fatalError()
+    }
+  }
+  
   func applyFriend(userID: Int, friend_user_id: Int) async {
     let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/\(friend_user_id)/apply")
     requestEntity.setPostRequest()
@@ -190,6 +240,14 @@ class UserAPIRepository: APIRepository {
   
   func acceptFriend(userID: Int, friend_user_id: Int) async {
     let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/\(friend_user_id)/accept")
+    requestEntity.setPostRequest()
+    requestEntity.setToken()
+    
+    let (data, _) = await self.request(requestEntity: requestEntity)
+  }
+  
+  func declineFriend(userID: Int, friend_user_id: Int) async {
+    let requestEntity = RequestEntity(url: "https://eat-with.herokuapp.com/api/users/\(userID)/friends/\(friend_user_id)/decline")
     requestEntity.setPostRequest()
     requestEntity.setToken()
     

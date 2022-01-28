@@ -41,7 +41,8 @@ struct MapView: View {
   @Binding var region: MKCoordinateRegion
   @Binding var events: [Event]
   var eventDetailData: EventDetailData
-  @Binding var showEventDetailModal: Bool
+//  @Binding var showEventDetailModal: Bool
+  @EnvironmentObject var eventMapData : EventMapData
   
   var body: some View {
     return Map(
@@ -59,7 +60,7 @@ struct MapView: View {
                   async {
                     eventDetailData.event = event
                     await eventDetailData.fetchEvent(eventID: event.id)
-                    showEventDetailModal.toggle()
+                    eventMapData.showEventDetailModal = true
                   }
                 })
            )

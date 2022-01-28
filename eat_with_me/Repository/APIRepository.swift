@@ -29,6 +29,7 @@ class RequestEntity {
   
   func setToken() {
     let token = UserDefaults.standard.string(forKey: "token")!
+    print("token", token)
     self.request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
   }
   
@@ -38,6 +39,10 @@ class RequestEntity {
   
   func setPostRequest() {
     self.request.httpMethod = "POST"
+  }
+  
+  func setPutRequest() {
+    self.request.httpMethod = "PUT"
   }
   
   func setJsonBody(json: String) {

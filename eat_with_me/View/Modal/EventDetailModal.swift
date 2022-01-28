@@ -23,6 +23,8 @@ struct EventDetailModal: View {
 //  @Binding var event: Event?
   var userID: Int
   @ObservedObject var eventDetailData: EventDetailData
+  @EnvironmentObject var eventMapData: EventMapData
+  
   
   var body: some View {
     VStack {
@@ -55,6 +57,18 @@ struct EventDetailModal: View {
               }
             })
           }
+          
+          
+          if event.organizeUser.id == self.userID {
+            EditButton(action: {
+              print("pushed edit button")
+              eventMapData.showEventDetailModal = false
+              
+              eventMapData.showEventEditModal = true
+              eventMapData.setEventObservable(event: eventDetailData.event!)
+            })
+          }
+          
         }
       }
       .padding(.bottom, 15)

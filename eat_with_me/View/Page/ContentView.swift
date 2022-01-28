@@ -50,15 +50,17 @@ struct ContentView: View {
   @ObservedObject var eventDetailData: EventDetailData
   
   @State var isShowHalfModal = false
-  @State var showEventDetailModal = false
+//  @State var showEventDetailModal = false
   @State var showApplyFriendModal = false
   @State var applyUser : User? = nil
+  
+  @EnvironmentObject var eventMapData: EventMapData
   
   var body: some View {
 
     NavigationView {
       ZStack {
-        MapView(region: $mapData.region, events: $eventsData.events, eventDetailData: eventDetailData, showEventDetailModal: $showEventDetailModal)
+        MapView(region: $mapData.region, events: $eventsData.events, eventDetailData: eventDetailData)
         .onAppear {
           print("Map　表示された！")
         }
@@ -144,9 +146,32 @@ struct ContentView: View {
         }
       }
       
-      .sheet(isPresented: $showEventDetailModal) {
+      .sheet(isPresented: $eventMapData.showEventDetailModal) {
         VStack () {
           EventDetailModal(userID: self.appData.userID, eventDetailData: eventDetailData)
+          Spacer()
+        }
+      }
+      
+      .sheet(isPresented: $eventMapData.showEventEditModal) {
+        VStack () {
+          EventEditModalView(
+            title: $eventMapData.eventObservable.title,
+            description: $eventMapData.eventObservable.description,
+            startDatetime: $eventMapData.eventObservable.startDatetime,
+            endDatetime: $eventMapData.eventObservable.endDatetime,
+            action: {
+              eventMapData.showEventEditModal.toggle()
+              
+              let event = eventMapData.eventObservable.getEvent(
+                latitude: eventMapData.latitude,
+                longitude: eventMapData.longitude,
+                organizeUser: eventMapData.organizeUser!)
+              
+              async {
+                await self.eventsData.updateEvent(event: event)
+              }
+            })
           Spacer()
         }
       }

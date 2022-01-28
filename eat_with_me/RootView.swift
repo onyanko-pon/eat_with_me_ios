@@ -16,7 +16,7 @@ struct RootView: View {
       if self.isActive {
         if appData.userID != 0 {
           ContentView(userID: appData.userID)
-            .environmentObject(appData)
+            .environmentObject(EventMapData())
             .animation(Animation.easeIn(duration: 0.1))
         } else {
           TutorialView()

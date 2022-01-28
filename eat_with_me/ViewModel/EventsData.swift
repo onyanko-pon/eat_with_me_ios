@@ -43,6 +43,24 @@ class EventsData: ObservableObject {
     await self.eventRepository.createEvent(requestBody: eventBody)
     await self.fetchEvents(userID: self.userID)
   }
+  
+  func updateEvent(event: Event) async {
+    let eventBody = UpdateEventBody(
+      event: UpdateEventCodable(
+        id: event.id,
+        title: event.title,
+        description: event.description,
+        start_datetime: event.startDatetime,
+        end_datetime: event.endDatetime,
+        organize_user_id: self.userID,
+        latitude: event.latitude,
+        longitude: event.longitude
+      )
+    )
+    
+    await self.eventRepository.updateEvent(requestBody: eventBody)
+    await self.fetchEvents(userID: self.userID)
+  }
 }
 
 

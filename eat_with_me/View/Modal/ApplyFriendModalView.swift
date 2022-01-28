@@ -15,6 +15,7 @@ struct ApplyFriendModalView: View {
   @State var user: User? = nil
   @Binding var openSheet: Bool
   @State var userNotFound = false
+  @EnvironmentObject var appData: AppData
   
   var applyUserData = ApplyFriendData()
   
@@ -69,8 +70,8 @@ struct ApplyFriendModalView: View {
         Button(action: {
           async {
             await self.applyUserData.apply(userID: self.userID, friend_user_id: self.user!.id)
+            await self.appData.loadFriend()
             openSheet.toggle()
-            
           }
         }) {
           Text("友達申請")

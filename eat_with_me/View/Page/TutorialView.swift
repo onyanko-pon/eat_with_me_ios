@@ -36,14 +36,33 @@ class AuthPresentationContextProver: NSObject, ASWebAuthenticationPresentationCo
     }
 }
 
+//struct SignInWithAppleButton: UIViewRepresentable {
+//    typealias UIViewType = ASAuthorizationAppleIDButton
+//
+//    func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
+//        return ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+//    }
+//
+//    func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {}
+//}
+
+final class SignInWithApple: UIViewRepresentable {
+  // 2
+  func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
+    // 3
+    return ASAuthorizationAppleIDButton()
+  }
+  
+  // 4
+  func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {
+  }
+}
+
 struct TutorialView: View {
   @EnvironmentObject var appData: AppData
   let twitterRepository = TwitterAPIRepository()
   let userRepository = UserAPIRepository()
   @State var secret = ""
-  
-  init(){
-  }
   
   var body: some View {
     VStack {
@@ -98,9 +117,19 @@ struct TutorialView: View {
         .frame(width: 260, height: 44)
         .foregroundColor(Color(.white))
         .background(Color(red: (29.0/255.0), green: (161.0/255.0), blue: (242.0/255.0)))
-        .cornerRadius(8)
-        
+        .cornerRadius(6)
       }
+      
+      SignInWithAppleButton(.signIn) { request in
+//          request.requestedScopes = [.fullName, .email]
+        request.requestedScopes = []
+      } onCompletion: { authResults in
+        print("result")
+        self.appData.appleAuthResults = authResults
+      }
+      .signInWithAppleButtonStyle(.black)
+      .frame(width: 260, height: 44)
+
       Spacer()
     }
   }
@@ -114,5 +143,3 @@ struct TutorialView: View {
 //      .previewInterfaceOrientation(.portrait)
 //  }
 //}
-
-

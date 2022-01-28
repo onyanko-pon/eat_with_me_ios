@@ -98,8 +98,9 @@ struct FriendListView: View {
               
               Spacer()
               Button(action: {
+                
                 async {
-                  await userRepository.acceptFriend(userID: appData.userID, friend_user_id: user.id)
+                  await userRepository.acceptFriend(userID: appData.userID, friend_user_id: apply.user.id)
                   print("許可")
                   await appData.load()
                 }
@@ -116,7 +117,11 @@ struct FriendListView: View {
               .padding(.trailing, 2)
 
               Button(action: {
-                print("削除")
+                print("削除", appData.userID, apply.user.id)
+                async {
+                  await userRepository.declineFriend(userID: appData.userID, friend_user_id: apply.user.id)
+                  await appData.load()
+                }
               }) {
                 Text("削除")
                   .font(.caption)

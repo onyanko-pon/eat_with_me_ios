@@ -13,6 +13,7 @@
 		E01BC1F1275E660100195C71 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01BC1F0275E660100195C71 /* Friend.swift */; };
 		E01BC1F3275E8B8A00195C71 /* FriendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01BC1F2275E8B8A00195C71 /* FriendData.swift */; };
 		E01BC1F5275E930700195C71 /* FriendDetailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01BC1F4275E930700195C71 /* FriendDetailModalView.swift */; };
+		E0341A93277B7ADF009352EF /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0341A92277B7ADF009352EF /* AuthViewModel.swift */; };
 		E04E7080275D06C00070C3F4 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04E707F275D06C00070C3F4 /* TutorialView.swift */; };
 		E04E7082275DDC9E0070C3F4 /* TwitterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04E7081275DDC9E0070C3F4 /* TwitterRepository.swift */; };
 		E064F9DA274E35F100A37464 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E064F9D9274E35F100A37464 /* RootView.swift */; };
@@ -42,6 +43,9 @@
 		E09BACCE274EB322009A9078 /* EventAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BACCD274EB322009A9078 /* EventAPIRepository.swift */; };
 		E0A822AD2769D29B00CD44ED /* FriendShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A822AC2769D29B00CD44ED /* FriendShareSheet.swift */; };
 		E0CD02A027686F0200A290D6 /* FriendApply.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD029F27686F0200A290D6 /* FriendApply.swift */; };
+		E0E882D327A0FD7A0063815D /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E882D227A0FD7A0063815D /* EditButton.swift */; };
+		E0E882D527A0FE710063815D /* EventEditModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E882D427A0FE710063815D /* EventEditModal.swift */; };
+		E0E882D727A102820063815D /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E882D627A102820063815D /* EventData.swift */; };
 		E0ECF6BE275C653200DDD932 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ECF6BD275C653200DDD932 /* AppData.swift */; };
 		E0F1F935274B338C0066801A /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F1F934274B338C0066801A /* UserDetailView.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +59,9 @@
 		E01BC1F0275E660100195C71 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		E01BC1F2275E8B8A00195C71 /* FriendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendData.swift; sourceTree = "<group>"; };
 		E01BC1F4275E930700195C71 /* FriendDetailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailModalView.swift; sourceTree = "<group>"; };
+		E0341A90277B24E1009352EF /* eat_with_meRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eat_with_meRelease.entitlements; sourceTree = "<group>"; };
+		E0341A91277B6AFB009352EF /* eat_with_me.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eat_with_me.entitlements; sourceTree = "<group>"; };
+		E0341A92277B7ADF009352EF /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		E04E707F275D06C00070C3F4 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		E04E7081275DDC9E0070C3F4 /* TwitterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterRepository.swift; sourceTree = "<group>"; };
 		E064F9D9274E35F100A37464 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -85,6 +92,9 @@
 		E09BACCD274EB322009A9078 /* EventAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIRepository.swift; sourceTree = "<group>"; };
 		E0A822AC2769D29B00CD44ED /* FriendShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendShareSheet.swift; sourceTree = "<group>"; };
 		E0CD029F27686F0200A290D6 /* FriendApply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendApply.swift; sourceTree = "<group>"; };
+		E0E882D227A0FD7A0063815D /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		E0E882D427A0FE710063815D /* EventEditModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditModal.swift; sourceTree = "<group>"; };
+		E0E882D627A102820063815D /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		E0ECF6BD275C653200DDD932 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		E0ECF6BF275C8FDF00DDD932 /* eat-with-me-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "eat-with-me-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E0F1F934274B338C0066801A /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
@@ -159,6 +169,8 @@
 		E06637CE2744EC2500CD1D96 /* eat_with_me */ = {
 			isa = PBXGroup;
 			children = (
+				E0341A91277B6AFB009352EF /* eat_with_me.entitlements */,
+				E0341A90277B24E1009352EF /* eat_with_meRelease.entitlements */,
 				E0ECF6BF275C8FDF00DDD932 /* eat-with-me-Info.plist */,
 				E0ECF6BC275C652500DDD932 /* Environment */,
 				E0295CAA274810DE00170B5D /* Repository */,
@@ -213,6 +225,7 @@
 				E06637EB274618D700CD1D96 /* EventObservable.swift */,
 				E01BC1EE275E3F0C00195C71 /* ApplyFriendData.swift */,
 				E01BC1F2275E8B8A00195C71 /* FriendData.swift */,
+				E0341A92277B7ADF009352EF /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,6 +235,7 @@
 			children = (
 				E06637F527462D2900CD1D96 /* EventDetailModal.swift */,
 				E06637E127452CF100CD1D96 /* EventModalView.swift */,
+				E0E882D427A0FE710063815D /* EventEditModal.swift */,
 				E01BC1EC275E347800195C71 /* ApplyFriendModalView.swift */,
 				E01BC1F4275E930700195C71 /* FriendDetailModalView.swift */,
 				E0A822AC2769D29B00CD44ED /* FriendShareSheet.swift */,
@@ -244,6 +258,7 @@
 			children = (
 				E06637F3274627D800CD1D96 /* CreateEventButton.swift */,
 				E06637F927465E0400CD1D96 /* ParticipateButton.swift */,
+				E0E882D227A0FD7A0063815D /* EditButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -273,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				E0ECF6BD275C653200DDD932 /* AppData.swift */,
+				E0E882D627A102820063815D /* EventData.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -392,8 +408,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E06637EE27461C4A00CD1D96 /* URLImage.swift in Sources */,
+				E0E882D327A0FD7A0063815D /* EditButton.swift in Sources */,
 				E06637F82746542700CD1D96 /* UserIcon.swift in Sources */,
 				E06637FC27465FC500CD1D96 /* EventsData.swift in Sources */,
+				E0E882D527A0FE710063815D /* EventEditModal.swift in Sources */,
 				E01BC1F5275E930700195C71 /* FriendDetailModalView.swift in Sources */,
 				E0663806274679B700CD1D96 /* FriendDetailView.swift in Sources */,
 				E0CD02A027686F0200A290D6 /* FriendApply.swift in Sources */,
@@ -401,6 +419,7 @@
 				E04E7082275DDC9E0070C3F4 /* TwitterRepository.swift in Sources */,
 				E0F1F935274B338C0066801A /* UserDetailView.swift in Sources */,
 				E09BACCE274EB322009A9078 /* EventAPIRepository.swift in Sources */,
+				E0341A93277B7ADF009352EF /* AuthViewModel.swift in Sources */,
 				E01BC1EF275E3F0C00195C71 /* ApplyFriendData.swift in Sources */,
 				E06637D22744EC2500CD1D96 /* ContentView.swift in Sources */,
 				E064F9DA274E35F100A37464 /* RootView.swift in Sources */,
@@ -410,6 +429,7 @@
 				E06637F22746276C00CD1D96 /* User.swift in Sources */,
 				E04E7080275D06C00070C3F4 /* TutorialView.swift in Sources */,
 				E06637F4274627D800CD1D96 /* CreateEventButton.swift in Sources */,
+				E0E882D727A102820063815D /* EventData.swift in Sources */,
 				E09BACCC274EAB56009A9078 /* UserAPIRepository.swift in Sources */,
 				E01BC1ED275E347800195C71 /* ApplyFriendModalView.swift in Sources */,
 				E09BACC8274E4B3E009A9078 /* ImagePicker.swift in Sources */,
@@ -553,6 +573,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = eat_with_me/eat_with_me.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"eat_with_me/Preview Content\"";
@@ -573,6 +595,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.maruyaman.eat-with-me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -585,6 +608,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = eat_with_me/eat_with_meRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"eat_with_me/Preview Content\"";
@@ -605,6 +630,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.maruyaman.eat-with-me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
